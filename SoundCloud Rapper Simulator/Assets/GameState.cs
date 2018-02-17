@@ -41,10 +41,10 @@ public class GameState
 		return score;
 	}
 
-	private void updateFollowers(int score)
+	private void updateFollowers(double score)
 	{
 		int randomFactor = new System.Random().Next(1, 6);
-		this.followers = randomFactor * (score - 4);
+		this.followers = randomFactor * (int) (score - 4);
 	}
 
 	private double getGameScore()
