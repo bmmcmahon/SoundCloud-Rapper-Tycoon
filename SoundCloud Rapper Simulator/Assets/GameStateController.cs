@@ -25,9 +25,9 @@ public class GameStateController : MonoBehaviour {
 
 	public void songCreated ()
 	{
-		gameState.produceSong (textField.text);
+		double score = gameState.produceSong (textField.text);
 		textField.text = "";
-		Debug.Log (gameState.Followers);
+		Debug.Log (score.ToString());
 		menuEn.closeCreators ();
 	}
 	
