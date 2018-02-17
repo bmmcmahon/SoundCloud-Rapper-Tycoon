@@ -10,6 +10,7 @@ public class MenuEnabler : MonoBehaviour {
 	private Transform transform;
 	private Animator animator;
 	private Canvas scoreWindow;
+	private Canvas songList;
 
 	// Use this for initialization
 	void Start () {
@@ -31,6 +32,8 @@ public class MenuEnabler : MonoBehaviour {
 			}
 		}
 		scoreWindow = GameObject.Find ("ScoreWindow").GetComponent<Canvas> ();
+		songList = GameObject.Find ("SongList").GetComponent<Canvas> ();
+		songList.enabled = false;
 		scoreWindow.enabled = false;
 		videoCreator.enabled = false;
 
@@ -49,6 +52,9 @@ public class MenuEnabler : MonoBehaviour {
 				openVideoCreator ();
 			}
 		}
+		if (Input.GetKey (KeyCode.S)) {
+			openSongList();
+		}
 //		if (Input.GetKey (KeyCode.B)) {
 //			closeCreators ();
 //		}
@@ -61,6 +67,16 @@ public class MenuEnabler : MonoBehaviour {
 	public void closeScoreWindow ()
 	{
 		scoreWindow.enabled = false;
+	}
+
+	public void openSongList ()
+	{
+		songList.enabled = true;
+	}
+
+	public void closeSongList ()
+	{
+		songList.enabled = false;
 	}
 
 	public void closeCreators () {

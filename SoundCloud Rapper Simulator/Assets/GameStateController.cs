@@ -14,6 +14,7 @@ public class GameStateController : MonoBehaviour {
 	private Text scoreRundown;
 	private Text yourSong;
 	private Text songScore;
+	private Text songList;
 
 	private MenuEnabler menuEn;
 	private int count;
@@ -30,6 +31,9 @@ public class GameStateController : MonoBehaviour {
 		scoreRundown = GameObject.Find ("/ScoreWindow/Panel/ScoreRundown").GetComponent<Text> ();
 		yourSong = GameObject.Find ("/ScoreWindow/Panel/Your Song").GetComponent<Text> ();
 		songScore = GameObject.Find ("/ScoreWindow/Panel/Score").GetComponent<Text> ();
+		songList = GameObject.Find ("/SongList/Panel/Text").GetComponent<Text> ();
+
+		songList.text = "";
 		scoreRundown.enabled = false;
 		songScore.enabled = false;
 
@@ -81,13 +85,24 @@ public class GameStateController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		money.text = gameState.Money.ToString ();
+		if(money.text != null) money.text = gameState.Money.ToString ();
 		followers.text = gameState.Followers.ToString ();
+
+	}
+
+	private void setUpSongList ()
+	{
+		foreach (var song in gameState.Songs) {
+			string name = song.Title;
+			string listens = song.Listeners.ToString();
+			songList.text += "Song \""+ name +"\" has " + listens + " listens.\n";
+		}
 	}
 
 	void updateSongs ()
 	{
 		gameState.updateSongs ();
+		setUpSongList ();
 		Debug.Log (" PISS ");
 	}
 }
