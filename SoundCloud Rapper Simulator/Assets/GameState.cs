@@ -29,7 +29,7 @@ public class GameState
 	public GameState()
 	{
 		this.followers = 0;
-		this.money = 100;
+		this.money = 30;
 		this.level = 1;
 		this.songs = new List<Song> ();
 		this.stuff = 2.5;
@@ -41,7 +41,7 @@ public class GameState
 		
 	public double produceSong(string title)
 	{
-		this.money -= 15.0; // Initial cost to make song
+		this.money -= 10.0; // Initial cost to make song
 
 		var song = new Song (title);
 		double score = getGameScore ();
@@ -51,6 +51,8 @@ public class GameState
 		song.Listeners = listeners;
 		song.Score = score;
 		song.Profit = profit;
+
+		song.UpdateLength = new System.Random ().Next (5, 11) * (int)score;
 
 		updateFollowers (score);
 
@@ -89,7 +91,7 @@ public class GameState
 
 	private double initalMoney (int listeners)
 	{	
-		double money = listeners / 50.0;
+		double money = listeners / 100.0;
 		this.money += money;
 
 		return money;

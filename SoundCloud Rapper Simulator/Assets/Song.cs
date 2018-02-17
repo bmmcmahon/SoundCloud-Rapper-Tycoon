@@ -15,6 +15,7 @@ public class Song
 	public double Score { get { return score; } set { score = value; } }
 	public int Listeners { get { return listeners; } set { listeners = value; } }
 	public double Profit { get { return profit; } set { profit = value; } }
+	public int UpdateLength { set { updateLength = value; } }
 
 	public Song(string title)
 	{
@@ -22,7 +23,7 @@ public class Song
 		this.score = 0;
 		this.listeners = 0;
 		this.profit = 0;
-		this.updateLength = new System.Random ().Next(10, 51); // Random number 10-50
+		this.updateLength = 0;
 	}
 
 	public double updateStats(int followers)
