@@ -5,9 +5,11 @@ using UnityEngine;
 public class MovePlayer : MonoBehaviour {
 
 	Transform transform;
+	Rigidbody2D rb;
 	// Use this for initialization
 	void Start () {
 		transform = GetComponent<Transform> ();
+		rb = GetComponent<Rigidbody2D> ();
 	}
 	
 	// Update is called once per frame
@@ -19,16 +21,16 @@ public class MovePlayer : MonoBehaviour {
 			Input.GetKey (KeyCode.RightArrow)) {
 
 			if (Input.GetKey (KeyCode.UpArrow)) {
-				transform.position = transform.position + (Vector3.up*2f*Time.deltaTime);
+				rb.MovePosition (transform.position + (Vector3.up*2f*Time.deltaTime));
 			}
 			if (Input.GetKey (KeyCode.DownArrow)) {
-				transform.position = transform.position + (Vector3.down*2f*Time.deltaTime);
+				rb.MovePosition (transform.position + (Vector3.down*2f*Time.deltaTime));
 			}
 			if (Input.GetKey (KeyCode.LeftArrow)) {
-				transform.position = transform.position + (Vector3.left*4f*Time.deltaTime);
+				rb.MovePosition (transform.position + (Vector3.left*4f*Time.deltaTime));
 			}
 			if (Input.GetKey (KeyCode.RightArrow)) {
-				transform.position = transform.position + (Vector3.right*4f*Time.deltaTime);
+				rb.MovePosition (transform.position + (Vector3.right*4f*Time.deltaTime));
 			}
 //			if (Input.GetKey (KeyCode.RightArrow)) {
 //				if (!(_animator.GetInteger ("State") == 0)) {
