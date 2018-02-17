@@ -92,6 +92,7 @@ public class GameStateController : MonoBehaviour {
 
 	private void setUpSongList ()
 	{
+		songList.text = "";
 		foreach (var song in gameState.Songs) {
 			string name = song.Title;
 			string listens = song.Listeners.ToString();
