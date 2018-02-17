@@ -22,22 +22,29 @@ public class MovePlayer : MonoBehaviour {
 			Input.GetKey (KeyCode.LeftArrow) ||
 			Input.GetKey (KeyCode.RightArrow)) {
 
+			Vector3 movement = Vector3.zero;
+
 			if (Input.GetKey (KeyCode.UpArrow)) {
-				rb.MovePosition (transform.position + (Vector3.up*2f*Time.deltaTime));
+				movement += (Vector3.up*1.5f*Time.deltaTime);
 				animator.SetInteger ("State", 1);
 			}
 			if (Input.GetKey (KeyCode.DownArrow)) {
-				rb.MovePosition (transform.position + (Vector3.down*2f*Time.deltaTime));
+				movement += (Vector3.down * 1.5f * Time.deltaTime);
 				animator.SetInteger ("State", 0);
 			}
 			if (Input.GetKey (KeyCode.LeftArrow)) {
-				rb.MovePosition (transform.position + (Vector3.left*4f*Time.deltaTime));
+				movement += (Vector3.left*4f*Time.deltaTime);
 				animator.SetInteger ("State", 2);
 			}
 			if (Input.GetKey (KeyCode.RightArrow)) {
-				rb.MovePosition (transform.position + (Vector3.right*4f*Time.deltaTime));
+				movement += (Vector3.right*4f*Time.deltaTime);
 				animator.SetInteger ("State", 3);
 			}
+
+			if (movement != Vector3.zero) {
+				rb.MovePosition(transform.position + movement);
+			}
+				
 //			if (Input.GetKey (KeyCode.RightArrow)) {
 //				if (!(_animator.GetInteger ("State") == 0)) {
 //					_animator.SetInteger ("State", 0);
