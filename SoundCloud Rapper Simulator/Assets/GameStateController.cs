@@ -31,6 +31,7 @@ public class GameStateController : MonoBehaviour {
 		yourSong = GameObject.Find ("/ScoreWindow/Panel/Your Song").GetComponent<Text> ();
 		songScore = GameObject.Find ("/ScoreWindow/Panel/Score").GetComponent<Text> ();
 		scoreRundown.enabled = false;
+		songScore.enabled = false;
 
 		Debug.Log (money.text);
 		InvokeRepeating("updateSongs", 0f, 30f);
@@ -53,21 +54,28 @@ public class GameStateController : MonoBehaviour {
 		} else if (score == 10) {
 			scoreRundown.text = "a MASTAPIECE!";
 		}
+		songScore.text = score + "/10";
 		menuEn.closeCreators ();
 		menuEn.openScoreWindow ();
 	}
 
 	public void scoreWindowContinue() 
 	{
+		if (scoreRundown.enabled) {
+			menuEn.closeScoreWindow ();
+		}
 		flipScoreRundownEnabled ();
+
 	}
 //
 	public void flipScoreRundownEnabled ()
 	{
 		if (scoreRundown.enabled) {
 			scoreRundown.enabled = false;
+			songScore.enabled = false;
 		} else {
 			scoreRundown.enabled = true;
+			songScore.enabled = true;
 		}
 	}
 	
