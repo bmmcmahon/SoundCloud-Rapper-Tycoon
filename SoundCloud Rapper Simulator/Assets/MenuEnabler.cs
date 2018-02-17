@@ -38,24 +38,32 @@ public class MenuEnabler : MonoBehaviour {
 		
 		if (transform.position.x < -5f && transform.position.y > -1f) {
 			if (Input.GetKey (KeyCode.A)) {
-				songCreator.enabled = true;
+				openSongCreator ();
 				animator.SetBool ("CanWalk", false);
 			}
 		}
 		if (transform.position.x > 5.53f && transform.position.y > -1.03f) {
 			if (Input.GetKey (KeyCode.A)) {
-				videoCreator.enabled = true;
+				openVideoCreator ();
 				animator.SetBool ("CanWalk", false);
 			}
 		}
 		if (Input.GetKey (KeyCode.B)) {
-			songCreator.enabled = false;
-			videoCreator.enabled = false;
+			closeCreators ();
 			animator.SetBool ("CanWalk", true);
 		}
 	}
 
-	public void closeSongCreator() {
+	public void closeCreators () {
+		songCreator.enabled = false;
+		videoCreator.enabled = false;
+	}
 
+	public void openSongCreator () {
+		songCreator.enabled = true;
+	}
+
+	public void openVideoCreator () {
+		videoCreator.enabled = true;
 	}
 }
