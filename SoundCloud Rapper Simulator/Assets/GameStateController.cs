@@ -11,6 +11,7 @@ public class GameStateController : MonoBehaviour {
 	private Text stuff;
 	private Text followers;
 	private MenuEnabler menuEn;
+	private int count;
 
 	// Use this for initialization
 	void Start () {
@@ -21,6 +22,7 @@ public class GameStateController : MonoBehaviour {
 		stuff = GameObject.Find ("/Stats/Panel/Stuff").GetComponent<Text> ();
 		followers = GameObject.Find ("/Stats/Panel/Followers").GetComponent<Text> ();
 		Debug.Log (money.text);
+		InvokeRepeating("updateSongs", 0f, 30f);
 	}
 
 	public void songCreated ()
@@ -35,5 +37,11 @@ public class GameStateController : MonoBehaviour {
 	void Update () {
 		money.text = gameState.Money.ToString ();
 		followers.text = gameState.Followers.ToString ();
+	}
+
+	void updateSongs ()
+	{
+		gameState.updateSongs ();
+		Debug.Log (" PISS ");
 	}
 }
