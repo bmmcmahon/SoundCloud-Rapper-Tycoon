@@ -39,31 +39,31 @@ public class MenuEnabler : MonoBehaviour {
 		if (transform.position.x < -5f && transform.position.y > -1f) {
 			if (Input.GetKey (KeyCode.A)) {
 				openSongCreator ();
-				animator.SetBool ("CanWalk", false);
 			}
 		}
 		if (transform.position.x > 5.53f && transform.position.y > -1.03f) {
 			if (Input.GetKey (KeyCode.A)) {
 				openVideoCreator ();
-				animator.SetBool ("CanWalk", false);
 			}
 		}
-		if (Input.GetKey (KeyCode.B)) {
-			closeCreators ();
-			animator.SetBool ("CanWalk", true);
-		}
+//		if (Input.GetKey (KeyCode.B)) {
+//			closeCreators ();
+//		}
 	}
 
 	public void closeCreators () {
 		songCreator.enabled = false;
 		videoCreator.enabled = false;
+		animator.SetBool ("CanWalk", true);
 	}
 
 	public void openSongCreator () {
 		songCreator.enabled = true;
+		animator.SetBool ("CanWalk", false);
 	}
 
 	public void openVideoCreator () {
 		videoCreator.enabled = true;
+		animator.SetBool ("CanWalk", false);
 	}
 }
