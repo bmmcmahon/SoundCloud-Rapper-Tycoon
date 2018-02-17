@@ -10,9 +10,17 @@ public class GameState
 	private int level;
 	private List<Song> songs;
 
+	private Equipment microphone;
+	private Equipment computer;
+	private Equipment producer; 
+
 	public int Level { get { return level; } }
 	public int Money { get { return money; } }
 	public int Followers { get { return followers; } }
+
+	public Equipment Microphone { get { return microphone; } }
+	public Equipment Computer { get { return computer; } }
+	public Equipment Producer { get { return producer; } }
 
 	public GameState()
 	{
@@ -23,11 +31,13 @@ public class GameState
 	}
 
 	public double produceSong(string title)
-	// creates a new song
 	{
 		var song = new Song (title);
 		double score = getGameScore ();
+
 		song.Score = score;
+		updateFollowers (score);
+
 		return score;
 	}
 
