@@ -57,7 +57,8 @@ public class GameState
 	private void updateFollowers(double score)
 	{
 		int randomFactor = new System.Random().Next(1, 6);
-		this.followers += randomFactor * (int) (score - 4);
+		int followerChange = randomFactor * (int) (score - 4);
+		if (this.followers + followerChange >= 0) { this.followers += followerChange; }
 	}
 
 	private double getGameScore()
