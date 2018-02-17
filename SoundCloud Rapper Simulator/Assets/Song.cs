@@ -28,6 +28,8 @@ public class Song
 	public double updateStats(int followers)
 	// Return the amount of money made in this cycle
 	{
+		if (this.updateLength <= 0) { return 0.0; }
+
 		int newListeners = (this.updateLength * (int) this.score * followers) / 100;
 		double newProfit = newListeners / 50.0;
 
