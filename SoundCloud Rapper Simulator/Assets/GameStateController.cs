@@ -38,7 +38,7 @@ public class GameStateController : MonoBehaviour {
 		songScore.enabled = false;
 
 		Debug.Log (money.text);
-		InvokeRepeating("updateSongs", 0f, 30f);
+		InvokeRepeating("updateSongs", 0f, 45f);
 	}
 
 	public void songCreated ()

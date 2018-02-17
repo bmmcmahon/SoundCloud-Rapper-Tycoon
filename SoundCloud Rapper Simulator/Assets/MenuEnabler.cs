@@ -52,8 +52,10 @@ public class MenuEnabler : MonoBehaviour {
 				openVideoCreator ();
 			}
 		}
-		if (Input.GetKey (KeyCode.S)) {
-			openSongList();
+		if (transform.position.x > 6.14f && transform.position.y < -.76f) {
+			if (Input.GetKey (KeyCode.A)) {
+				openSongList ();
+			}
 		}
 //		if (Input.GetKey (KeyCode.B)) {
 //			closeCreators ();
