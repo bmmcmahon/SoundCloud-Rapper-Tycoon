@@ -19,16 +19,16 @@ public class MovePlayer : MonoBehaviour {
 			Input.GetKey (KeyCode.RightArrow)) {
 
 			if (Input.GetKey (KeyCode.UpArrow)) {
-				transform.position = transform.position + (Vector3.up*.1f);
+				transform.position = transform.position + (Vector3.up*.09f);
 			}
 			if (Input.GetKey (KeyCode.DownArrow)) {
-				transform.position = transform.position + (Vector3.down*.1f);
+				transform.position = transform.position + (Vector3.down*.09f);
 			}
 			if (Input.GetKey (KeyCode.LeftArrow)) {
-				transform.position = transform.position + (Vector3.left*.1f);
+				transform.position = transform.position + (Vector3.left*.09f);
 			}
 			if (Input.GetKey (KeyCode.RightArrow)) {
-				transform.position = transform.position + (Vector3.right*.1f);
+				transform.position = transform.position + (Vector3.right*.09f);
 			}
 //			if (Input.GetKey (KeyCode.RightArrow)) {
 //				if (!(_animator.GetInteger ("State") == 0)) {
