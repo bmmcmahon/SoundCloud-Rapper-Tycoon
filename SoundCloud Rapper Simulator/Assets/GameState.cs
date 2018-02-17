@@ -72,8 +72,9 @@ public class GameState
 		int randomFactorOne = random.Next(1, 6);
 		int randomFactorTwo = random.Next(1, 11);
 
+		if (random.Next (1, 5) == 1) { randomFactorOne *= -1; } // 25% chance to negate the first part
+
 		double score = (randomFactorOne * this.level) / 50 + randomFactorTwo;
-		if (random.Next (1, 5) == 1) { score *= -1; } // 25% chance to negate the score
 
 		return Math.Round(score, 1); // Return the score rounded to 1 decimal place
 	}
@@ -97,7 +98,7 @@ public class GameState
 	public void updateSongs()
 	{
 		for(int i = 0; i < this.songs.Count; ++i)
-		{
+		{ 
 			double newProfit = this.songs [i].updateStats (this.followers);
 			this.money += newProfit;
 		}
