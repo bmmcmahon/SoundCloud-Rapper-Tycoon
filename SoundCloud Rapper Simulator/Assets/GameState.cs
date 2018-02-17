@@ -41,7 +41,7 @@ public class GameState
 		
 	public double produceSong(string title)
 	{
-		this.money -= 50.0; // Initial cost to make song
+		this.money -= 15.0; // Initial cost to make song
 
 		var song = new Song (title);
 		double score = getGameScore ();
