@@ -9,6 +9,7 @@ public class MenuEnabler : MonoBehaviour {
 	private Canvas videoCreator;
 	private Transform transform;
 	private Animator animator;
+	private Canvas scoreWindow;
 
 	// Use this for initialization
 	void Start () {
@@ -29,6 +30,8 @@ public class MenuEnabler : MonoBehaviour {
 				Debug.Log("Could not locate Canvas component on " + temp.name);
 			}
 		}
+		scoreWindow = GameObject.Find ("ScoreWindow").GetComponent<Canvas> ();
+		scoreWindow.enabled = false;
 		videoCreator.enabled = false;
 
 	}
@@ -49,6 +52,15 @@ public class MenuEnabler : MonoBehaviour {
 //		if (Input.GetKey (KeyCode.B)) {
 //			closeCreators ();
 //		}
+	}
+	public void openScoreWindow ()
+	{
+		scoreWindow.enabled = true;
+	}
+
+	public void closeScoreWindow ()
+	{
+		scoreWindow.enabled = false;
 	}
 
 	public void closeCreators () {
