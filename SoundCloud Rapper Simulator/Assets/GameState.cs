@@ -6,7 +6,7 @@ using System;
 public class GameState 
 {
 	private int followers;
-	private int money;
+	private double money;
 	private int level;
 	private List<Song> songs;
 
@@ -15,7 +15,7 @@ public class GameState
 	private Equipment producer;
 
 	public int Level { get { return level; } set { level = value; } }
-	public int Money { get { return money; } }
+	public double Money { get { return money; } }
 	public int Followers { get { return followers; } }
 
 	public Equipment Microphone { get { return microphone; } }
@@ -36,7 +36,7 @@ public class GameState
 		
 	public double produceSong(string title)
 	{
-		this.Money -= 50.0; // Initial cost to make song
+		this.money -= 50.0; // Initial cost to make song
 
 		var song = new Song (title);
 		double score = getGameScore ();
@@ -83,7 +83,7 @@ public class GameState
 	private double initalMoney (int listeners)
 	{	
 		double money = listeners / 50.0;
-		this.Money += money;
+		this.money += money;
 		return money;
 	}
 }
