@@ -13,9 +13,10 @@ public class Equipment {
 		level = 1;
 	}
 
-	public int levelUp()
+	public int levelUp(GameState gameState)
 	{
 		level += 1;
+		gameState.Level += 1;
 		return level;
 	}
 

@@ -14,7 +14,7 @@ public class GameState
 	private Equipment computer;
 	private Equipment producer;
 
-	public int Level { get { return level; } }
+	public int Level { get { return level; } set { level = value; } }
 	public int Money { get { return money; } }
 	public int Followers { get { return followers; } }
 
@@ -29,15 +29,23 @@ public class GameState
 		this.level = 1;
 		this.songs = new List<Song> ();
 
+		microphone = new Equipment ();
+		computer = new Equipment ();
+		producer = new Equipment ();
 	}
 		
 	public double produceSong(string title)
 	{
 		var song = new Song (title);
 		double score = getGameScore ();
+		int listeners = initialListeners (score);
 
+		song.Listeners = listeners;
 		song.Score = score;
+
 		updateFollowers (score);
+
+		songs.Add (song);
 
 		return score;
 	}
@@ -58,6 +66,14 @@ public class GameState
 		if (random.Next (1, 5) == 1) { score *= -1; } // 25% chance to negate the score
 
 		return Math.Round(score, 1); // Return the score rounded to 1 decimal place
+	}
+
+	private int initialListeners(double score)
+	{
+		int randomFactor = new System.Random().Next(1, 6);
+		int listeners = randomFactor * (((int)score) / 2) * followers;
+
+		return listeners;
 	}
 }
 
