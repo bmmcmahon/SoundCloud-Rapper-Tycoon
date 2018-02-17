@@ -6,10 +6,12 @@ public class MovePlayer : MonoBehaviour {
 
 	Transform transform;
 	Rigidbody2D rb;
+	Animator animator;
 	// Use this for initialization
 	void Start () {
 		transform = GetComponent<Transform> ();
 		rb = GetComponent<Rigidbody2D> ();
+		animator = GetComponent<Animator> ();
 	}
 	
 	// Update is called once per frame
@@ -22,15 +24,19 @@ public class MovePlayer : MonoBehaviour {
 
 			if (Input.GetKey (KeyCode.UpArrow)) {
 				rb.MovePosition (transform.position + (Vector3.up*2f*Time.deltaTime));
+				animator.SetInteger ("State", 1);
 			}
 			if (Input.GetKey (KeyCode.DownArrow)) {
 				rb.MovePosition (transform.position + (Vector3.down*2f*Time.deltaTime));
+				animator.SetInteger ("State", 0);
 			}
 			if (Input.GetKey (KeyCode.LeftArrow)) {
 				rb.MovePosition (transform.position + (Vector3.left*4f*Time.deltaTime));
+				animator.SetInteger ("State", 2);
 			}
 			if (Input.GetKey (KeyCode.RightArrow)) {
 				rb.MovePosition (transform.position + (Vector3.right*4f*Time.deltaTime));
+				animator.SetInteger ("State", 3);
 			}
 //			if (Input.GetKey (KeyCode.RightArrow)) {
 //				if (!(_animator.GetInteger ("State") == 0)) {
