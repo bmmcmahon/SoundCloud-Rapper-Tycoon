@@ -22,6 +22,8 @@ public class GameState
 	public Equipment Computer { get { return computer; } }
 	public Equipment Producer { get { return producer; } }
 
+	public List<Song> Songs { get { return songs; } }
+
 	public GameState()
 	{
 		this.followers = 0;
@@ -97,7 +99,4 @@ public class GameState
 			this.money += newProfit;
 		}
 	}
-
-
 }
-
