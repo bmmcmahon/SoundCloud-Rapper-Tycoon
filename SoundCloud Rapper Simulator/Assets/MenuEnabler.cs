@@ -54,4 +54,8 @@ public class MenuEnabler : MonoBehaviour {
 			animator.SetBool ("CanWalk", true);
 		}
 	}
+
+	public void closeSongCreator() {
+
+	}
 }
