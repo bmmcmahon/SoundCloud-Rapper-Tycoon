@@ -36,16 +36,20 @@ public class GameState
 		
 	public double produceSong(string title)
 	{
+		this.Money -= 50.0; // Initial cost to make song
+
 		var song = new Song (title);
 		double score = getGameScore ();
 		int listeners = initialListeners (score);
+		double profit = initalMoney (listeners);
 
 		song.Listeners = listeners;
 		song.Score = score;
+		song.Profit = profit;
 
 		updateFollowers (score);
 
-		songs.Add (song);
+		this.songs.Add (song);
 
 		return score;
 	}
@@ -74,6 +78,13 @@ public class GameState
 		int listeners = randomFactor * (((int)score) / 2) * followers;
 
 		return listeners;
+	}
+
+	private double initalMoney (int listeners)
+	{	
+		double money = listeners / 50.0;
+		this.Money += money;
+		return money;
 	}
 }
 
