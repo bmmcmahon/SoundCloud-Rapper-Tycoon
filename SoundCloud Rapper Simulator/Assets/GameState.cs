@@ -8,6 +8,7 @@ public class GameState
 	private int followers;
 	private int money;
 	private int level;
+	private List<Song> songs;
 
 	public int Level { get { return level; } }
 	public int Money { get { return money; } }
@@ -15,9 +16,19 @@ public class GameState
 
 	public GameState()
 	{
-		followers = 0;
-		money = 100;
-		level = 1;
+		this.followers = 0;
+		this.money = 100;
+		this.level = 1;
+		this.songs = new List<Song> ();
+	}
+
+	public double produceSong(string title)
+	// creates a new song
+	{
+		var song = new Song (title);
+		double score = getGameScore ();
+		song.Score = score;
+		return score;
 	}
 
 	private void updateFollowers(int score)
