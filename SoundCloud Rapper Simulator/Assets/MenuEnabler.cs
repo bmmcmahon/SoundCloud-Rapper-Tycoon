@@ -55,7 +55,16 @@ public class MenuEnabler : MonoBehaviour {
 		}
 	}
 
-	public void closeSongCreator() {
+	public void closeCreators () {
+		songCreator.enabled = false;
+		videoCreator.enabled = false;
+	}
 
+	public void openSongCreator () {
+		songCreator.enabled = true;
+	}
+
+	public void openVideoCreator () {
+		videoCreator.enabled = true;
 	}
 }

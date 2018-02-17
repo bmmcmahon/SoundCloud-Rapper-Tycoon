@@ -7,18 +7,21 @@ public class GameStateController : MonoBehaviour {
 
 	private GameState gameState;
 	private UnityEngine.UI.InputField textField;
+	private MenuEnabler menuEn;
 
 	// Use this for initialization
 	void Start () {
 		gameState = new GameState ();
 		textField = GameObject.Find("SongCreator").GetComponentInChildren<UnityEngine.UI.InputField>();
+		menuEn = GetComponent<MenuEnabler> ();
 	}
 
 	public void songCreated ()
 	{
 		gameState.produceSong (textField.text);
 		textField.text = "";
-		Debug.Log ("dfsA");
+		Debug.Log (gameState.Followers);
+		menuEn.closeCreators ();
 	}
 	
 	// Update is called once per frame
