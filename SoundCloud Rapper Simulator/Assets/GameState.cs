@@ -85,6 +85,7 @@ public class GameState
 	{	
 		double money = listeners / 50.0;
 		this.money += money;
+
 		return money;
 	}
 
@@ -96,5 +97,7 @@ public class GameState
 			this.money += newProfit;
 		}
 	}
+
+
 }
 
