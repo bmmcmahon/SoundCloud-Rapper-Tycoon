@@ -9,6 +9,7 @@ public class GameState
 	private double money;
 	private int level;
 	private List<Song> songs;
+	private double stuff;
 
 	private Equipment microphone;
 	private Equipment computer;
@@ -17,6 +18,7 @@ public class GameState
 	public int Level { get { return level; } set { level = value; } }
 	public double Money { get { return money; } }
 	public int Followers { get { return followers; } }
+	public double Stuff { get { return stuff; } }
 
 	public Equipment Microphone { get { return microphone; } }
 	public Equipment Computer { get { return computer; } }
@@ -30,6 +32,7 @@ public class GameState
 		this.money = 100;
 		this.level = 1;
 		this.songs = new List<Song> ();
+		this.stuff = 2.5;
 
 		microphone = new Equipment ();
 		computer = new Equipment ();
@@ -98,5 +101,17 @@ public class GameState
 			double newProfit = this.songs [i].updateStats (this.followers);
 			this.money += newProfit;
 		}
+	}
+
+	public double buyStuff()
+	{
+		int costOfStuff = 10;
+		double moneyToSpend = 0.1 * this.money;
+		double newStuff = moneyToSpend / costOfStuff;
+
+		this.stuff += newStuff;
+		this.money -= moneyToSpend;
+
+		return moneyToSpend; // return how much money spent on stuff
 	}
 }
