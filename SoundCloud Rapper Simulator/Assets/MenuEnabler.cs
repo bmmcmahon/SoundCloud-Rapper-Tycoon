@@ -78,6 +78,7 @@ public class MenuEnabler : MonoBehaviour {
 
 	public void closeSongList ()
 	{
+		Debug.Log ("ASSS");
 		songList.enabled = false;
 	}
 
