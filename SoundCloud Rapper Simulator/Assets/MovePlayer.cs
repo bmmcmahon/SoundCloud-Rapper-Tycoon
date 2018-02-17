@@ -17,10 +17,7 @@ public class MovePlayer : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (Input.GetKey (KeyCode.UpArrow) ||
-			Input.GetKey (KeyCode.DownArrow) ||
-			Input.GetKey (KeyCode.LeftArrow) ||
-			Input.GetKey (KeyCode.RightArrow)) {
+		if (animator.GetBool("CanWalk")) {
 
 			Vector3 movement = Vector3.zero;
 

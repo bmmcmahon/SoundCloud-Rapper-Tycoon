@@ -12,7 +12,9 @@ public class GameState
 
 	private Equipment microphone;
 	private Equipment computer;
-	private Equipment producer; 
+	private Equipment producer;
+
+	private UnityEngine.UI.InputField textField;
 
 	public int Level { get { return level; } }
 	public int Money { get { return money; } }
@@ -28,7 +30,16 @@ public class GameState
 		this.money = 100;
 		this.level = 1;
 		this.songs = new List<Song> ();
+		textField = GameObject.Find("SongCreator").GetComponentInChildren<UnityEngine.UI.InputField>();
 	}
+
+	public void songCreated ()
+	{
+		produceSong (textField.text);
+		textField.text = "";
+		Debug.Log ("dfsA");
+	}
+		
 
 	public double produceSong(string title)
 	{
