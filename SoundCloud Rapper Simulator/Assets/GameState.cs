@@ -86,5 +86,14 @@ public class GameState
 		this.money += money;
 		return money;
 	}
+
+	public void updateSongs()
+	{
+		for(int i = 0; i < this.songs.Count; ++i)
+		{
+			double newProfit = this.songs [i].updateStats (this.followers);
+			this.money += newProfit;
+		}
+	}
 }
 
