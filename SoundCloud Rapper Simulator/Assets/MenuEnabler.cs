@@ -87,6 +87,7 @@ public class MenuEnabler : MonoBehaviour {
 	public void openSongList ()
 	{
 		songList.enabled = true;
+		closeUpgradeMenu ();
 	}
 
 	public void openUpgradeMenu ()
