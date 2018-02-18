@@ -16,7 +16,7 @@ public class GameState
 	private Equipment producer;
 
 	public int Level { get { return level; } set { level = value; } }
-	public double Money { get { return money; } set { money = value; } }
+	public double Money { get { return Math.Round(money, 2); } set { money = value; } }
 	public int Followers { get { return followers; } }
 	public double Stuff { get { return stuff; } }
 
