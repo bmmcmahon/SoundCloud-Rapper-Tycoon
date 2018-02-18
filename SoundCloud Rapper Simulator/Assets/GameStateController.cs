@@ -33,6 +33,8 @@ public class GameStateController : MonoBehaviour {
 	private Text comment2;
 	private Text comment3;
 
+	private Text or;
+	private Button readComments;
 	private Dropdown style;
 	private Dropdown tempo;
 	private Dropdown topic;
@@ -57,6 +59,8 @@ public class GameStateController : MonoBehaviour {
 		tempo = GameObject.Find ("/SongCreator/Panel/Dropdown (1)").GetComponent<Dropdown> ();
 		topic = GameObject.Find ("/SongCreator/Panel/Dropdown (2)").GetComponent<Dropdown> ();
 		featuring = GameObject.Find ("/SongCreator/Panel/Dropdown (3)").GetComponent<Dropdown> ();
+		readComments = GameObject.Find ("/ScoreWindow/Panel/ReadComments").GetComponent<Button> ();
+		or = GameObject.Find ("/ScoreWindow/Panel/Button/Or").GetComponent<Text> ();
 
 		songForVideo = GameObject.Find ("/VideoCreator/Panel/SongForVideo").GetComponent<Dropdown> ();
 
@@ -81,7 +85,10 @@ public class GameStateController : MonoBehaviour {
 		comment2 = GameObject.Find ("/FeedBackScreen/Panel/Comment2").GetComponent<Text> ();
 		comment3 = GameObject.Find ("/FeedBackScreen/Panel/Comment3").GetComponent<Text> ();
 
+
 		songList.text = "";
+//		readComments.enabled = false;
+		or.enabled = false;
 		scoreRundown.enabled = false;
 		songScore.enabled = false;
 
@@ -124,8 +131,10 @@ public class GameStateController : MonoBehaviour {
 			scoreRundown.text = "a MASTAPIECE!";
 		}
 		songScore.text = score + "/10";
+		readComments.gameObject.SetActive (false);
 		menuEn.closeCreators ();
 		menuEn.openScoreWindow ();
+
 	}
 
 	public void videoCreated ()
@@ -183,8 +192,14 @@ public class GameStateController : MonoBehaviour {
 	{
 		if (scoreRundown.enabled) {
 			menuEn.closeScoreWindow ();
+			readComments.gameObject.SetActive (false);
+			or.enabled = false;
+		} else {
+			readComments.gameObject.SetActive (true);
+			or.enabled = true;
 		}
 		flipScoreRundownEnabled ();
+		//enable button here
 
 	}
 
