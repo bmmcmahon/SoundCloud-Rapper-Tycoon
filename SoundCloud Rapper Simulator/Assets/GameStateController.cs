@@ -31,6 +31,8 @@ public class GameStateController : MonoBehaviour {
 	private Dropdown topic;
 	private Dropdown featuring;
 
+	private Dropdown songForVideo;
+
 	private MenuEnabler menuEn;
 	private int count;
 
@@ -47,6 +49,8 @@ public class GameStateController : MonoBehaviour {
 		tempo = GameObject.Find ("/SongCreator/Panel/Dropdown (1)").GetComponent<Dropdown> ();
 		topic = GameObject.Find ("/SongCreator/Panel/Dropdown (2)").GetComponent<Dropdown> ();
 		featuring = GameObject.Find ("/SongCreator/Panel/Dropdown (3)").GetComponent<Dropdown> ();
+
+		songForVideo = GameObject.Find ("/VideoCreator/Panel/SongForVideo").GetComponent<Dropdown> ();
 
 		playerLevel = GameObject.Find ("/LevelDisplay/Panel/PlayerLevel").GetComponent<Text> ();
 		money = GameObject.Find ("/Stats/Panel/Money").GetComponent<Text> ();
@@ -67,6 +71,8 @@ public class GameStateController : MonoBehaviour {
 		scoreRundown.enabled = false;
 		songScore.enabled = false;
 
+		songForVideo.ClearOptions ();
+
 		Debug.Log (money.text);
 		InvokeRepeating("updateSongs", 15f, 30f);
 	}
@@ -75,6 +81,8 @@ public class GameStateController : MonoBehaviour {
 	{
 		double score = gameState.produceSong (textField.text);
 		yourSong.text = "\"" + textField.text + "\"" + " is...";
+
+		songForVideo.AddOptions(new List<string> { gameState.Songs[gameState.Songs.Count - 1].Title });
 
 		sq.topic = topic.options [topic.value].text.ToString ();
 		sq.style = style.options [style.value].text.ToString ();
@@ -98,7 +106,6 @@ public class GameStateController : MonoBehaviour {
 		songScore.text = score + "/10";
 		menuEn.closeCreators ();
 		menuEn.openScoreWindow ();
-
 	}
 
 	public void upgradeMicrophone ()
@@ -178,7 +185,7 @@ public class GameStateController : MonoBehaviour {
 		foreach (var song in gameState.Songs) {
 			string name = song.Title;
 			string listens = song.Listeners.ToString();
-			songList.text += "Song \""+ name +"\" has " + listens + " listens.\n";
+			songList.text += "Song \""+ name +"\" has " + listens + " listens. " + song.Score + "/10\n";
 		}
 	}
 
