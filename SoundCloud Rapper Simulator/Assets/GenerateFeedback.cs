@@ -316,7 +316,7 @@ public class GenerateFeedback : MonoBehaviour {
 			do {
 				tempFeedback = "\"" + GetReview () + "\" - " + GetRandomUsername () + "\n";
 			} while(feedback.Contains(tempFeedback));
-			feedback[i] = tempFeedback;
+			feedback.Add(tempFeedback);
 		}
 		return feedback;
 	}
