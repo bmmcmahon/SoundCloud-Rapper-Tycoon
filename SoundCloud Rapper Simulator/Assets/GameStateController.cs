@@ -24,6 +24,7 @@ public class GameStateController : MonoBehaviour {
 	private Text computerLevel;
 	private Text microphoneLevel;
 	private Text producerLevel;
+	private Text playerLevel;
 
 	private Dropdown style;
 	private Dropdown tempo;
@@ -47,6 +48,7 @@ public class GameStateController : MonoBehaviour {
 		topic = GameObject.Find ("/SongCreator/Panel/Dropdown (2)").GetComponent<Dropdown> ();
 		featuring = GameObject.Find ("/SongCreator/Panel/Dropdown (3)").GetComponent<Dropdown> ();
 
+		playerLevel = GameObject.Find ("/LevelDisplay/Panel/PlayerLevel").GetComponent<Text> ();
 		money = GameObject.Find ("/Stats/Panel/Money").GetComponent<Text> ();
 		stuff = GameObject.Find ("/Stats/Panel/Stuff").GetComponent<Text> ();
 		followers = GameObject.Find ("/Stats/Panel/Followers").GetComponent<Text> ();
@@ -156,6 +158,7 @@ public class GameStateController : MonoBehaviour {
 		}
 		followers.text = gameState.Followers.ToString ();
 		updatePrices ();
+		playerLevel.text = "Lv. " + gameState.Level.ToString ();
 	}
 
 	private void updatePrices ()
