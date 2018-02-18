@@ -83,7 +83,7 @@ public class GameState
 
 	private int initialListeners(double score)
 	{
-		int randomFactor = new System.Random().Next(1, 6);
+		int randomFactor = new System.Random().Next(2, 7);
 		int listeners = randomFactor * (((int)score) / 2) * followers;
 
 		return listeners;
@@ -91,7 +91,7 @@ public class GameState
 
 	private double initalMoney (int listeners)
 	{	
-		double money = listeners / 50.0;
+		double money = listeners / 15.0;
 		this.money += money;
 
 		return money;

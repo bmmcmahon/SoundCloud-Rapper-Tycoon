@@ -31,8 +31,8 @@ public class Song
 	{
 		if (this.updateLength <= 0) { return 0.0; }
 
-		int newListeners = (this.updateLength * (int) this.score * followers) / 100;
-		double newProfit = newListeners / 50.0;
+		int newListeners = (this.updateLength * (int)this.score * followers) / 30;
+		double newProfit = newListeners / 15.0;
 
 		this.listeners += newListeners;
 		this.profit += newProfit;
