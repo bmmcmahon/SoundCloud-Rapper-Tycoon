@@ -44,7 +44,7 @@ public class GameState
 		
 	public double produceSong(string title)
 	{
-		string debug = "Song Created. Score: {0} Profit: {1} Listeners: {2} UpdateLength: {3}";
+		string debug = "Song Created. Score: {0} Profit: {1} Listeners: {2} UpdateLength: {3} Title: {4}";
 
 		this.money -= (10.0 + 0.10 * this.money) * this.level; // Initial cost to make song
 		var song = new Song (title);
@@ -58,7 +58,7 @@ public class GameState
 
 		song.UpdateLength = new System.Random ().Next (1, 6) * ((int)score/2);
 
-		Debug.Log (String.Format (debug, score, Math.Round(profit, 2), listeners, song.UpdateLength));
+		Debug.Log (String.Format (debug, score, Math.Round(profit, 2), listeners, song.UpdateLength, song.Title));
 
 		updateFollowers (score);
 
@@ -70,7 +70,7 @@ public class GameState
 	public double produceVideo(Song song)
 	{
 
-		string debug = "Video Created. Score: {0} Profit: {1} Views: {2} UpdateLength: {3}";
+		string debug = "Video Created. Score: {0} Profit: {1} Views: {2} UpdateLength: {3} Title: {4}";
 
 		this.money -= (10.0 + 0.10 * this.money) * this.level * 2; // Double the cost of a song
 		var video = new Video (song);
@@ -85,7 +85,7 @@ public class GameState
 
 		video.UpdateLength = new System.Random ().Next (1, 6) * ((int)score/2);
 
-		Debug.Log (String.Format (debug, score, Math.Round(profit, 2), views, video.UpdateLength));
+		Debug.Log (String.Format (debug, score, Math.Round(profit, 2), views, video.UpdateLength, video.Title));
 
 		this.videos.Add (video);
 
@@ -157,7 +157,7 @@ public class GameState
 		this.stuff += newStuff;
 		this.money -= moneyToSpend;
 
-		return moneyToSpend; // return how much money spent on stuff
+		return moneyToSpend;
 	}
 
 	public bool getShot()
