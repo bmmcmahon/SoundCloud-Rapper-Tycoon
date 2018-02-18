@@ -15,6 +15,12 @@ public class GameStateController : MonoBehaviour {
 	private Text yourSong;
 	private Text songScore;
 	private Text songList;
+	private Text computerPrice;
+	private Text microphonePrice;
+	private Text producerPrice;
+	private Text computerLevel;
+	private Text microphoneLevel;
+	private Text producerLevel;
 
 	private MenuEnabler menuEn;
 	private int count;
@@ -32,6 +38,12 @@ public class GameStateController : MonoBehaviour {
 		yourSong = GameObject.Find ("/ScoreWindow/Panel/Your Song").GetComponent<Text> ();
 		songScore = GameObject.Find ("/ScoreWindow/Panel/Score").GetComponent<Text> ();
 		songList = GameObject.Find ("/SongList/Panel/Text").GetComponent<Text> ();
+		computerPrice = GameObject.Find ("/UpgradeMenu/Panel/ComputerPrice").GetComponent<Text> ();
+		microphonePrice = GameObject.Find ("/UpgradeMenu/Panel/MicrophonePrice").GetComponent<Text> ();
+		producerPrice = GameObject.Find ("/UpgradeMenu/Panel/ProducerPrice").GetComponent<Text> ();
+		computerLevel = GameObject.Find ("/UpgradeMenu/Panel/ComputerLevel").GetComponent<Text> ();
+		microphoneLevel = GameObject.Find ("/UpgradeMenu/Panel/MicrophoneLevel").GetComponent<Text> ();
+		producerLevel = GameObject.Find ("/UpgradeMenu/Panel/ProducerLevel").GetComponent<Text> ();
 
 		songList.text = "";
 		scoreRundown.enabled = false;
@@ -63,6 +75,21 @@ public class GameStateController : MonoBehaviour {
 		menuEn.openScoreWindow ();
 	}
 
+	public void upgradeMicrophone ()
+	{
+		gameState.Microphone.levelUp (gameState);
+	}
+
+	public void upgradeComputer ()
+	{
+		gameState.Computer.levelUp (gameState);
+	}
+
+	public void upgradeProducer ()
+	{
+		gameState.Producer.levelUp (gameState);
+	}
+
 	public void scoreWindowContinue() 
 	{
 		if (scoreRundown.enabled) {
@@ -87,7 +114,17 @@ public class GameStateController : MonoBehaviour {
 	void Update () {
 		if(money.text != null) money.text = gameState.Money.ToString ();
 		followers.text = gameState.Followers.ToString ();
+		updatePrices ();
+	}
 
+	private void updatePrices ()
+	{
+		computerPrice.text = gameState.Computer.Cost.ToString ();
+		microphonePrice.text = gameState.Microphone.Cost.ToString ();
+		producerPrice.text = gameState.Producer.Cost.ToString ();
+		computerLevel.text = "Lv. " + gameState.Computer.Level.ToString () + " -> Lv. " + (gameState.Computer.Level + 1).ToString ();
+		producerLevel.text = "Lv. " + gameState.Producer.Level.ToString () + " -> Lv. " + (gameState.Producer.Level + 1).ToString ();
+		microphoneLevel.text = "Lv. " + gameState.Microphone.Level.ToString () + " -> Lv. " + (gameState.Microphone.Level + 1).ToString ();
 	}
 
 	private void setUpSongList ()
@@ -106,4 +143,6 @@ public class GameStateController : MonoBehaviour {
 		setUpSongList ();
 		Debug.Log (" PISS ");
 	}
+
+
 }

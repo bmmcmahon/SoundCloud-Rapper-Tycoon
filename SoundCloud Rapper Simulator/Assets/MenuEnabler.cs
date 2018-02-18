@@ -11,6 +11,7 @@ public class MenuEnabler : MonoBehaviour {
 	private Animator animator;
 	private Canvas scoreWindow;
 	private Canvas songList;
+	private Canvas upgradeMenu;
 
 	// Use this for initialization
 	void Start () {
@@ -33,6 +34,8 @@ public class MenuEnabler : MonoBehaviour {
 		}
 		scoreWindow = GameObject.Find ("ScoreWindow").GetComponent<Canvas> ();
 		songList = GameObject.Find ("SongList").GetComponent<Canvas> ();
+		upgradeMenu = GameObject.Find ("UpgradeMenu").GetComponent<Canvas> ();
+		upgradeMenu.enabled = false;
 		songList.enabled = false;
 		scoreWindow.enabled = false;
 		videoCreator.enabled = false;
@@ -76,9 +79,18 @@ public class MenuEnabler : MonoBehaviour {
 		songList.enabled = true;
 	}
 
+	public void openUpgradeMenu ()
+	{
+		upgradeMenu.enabled = true;
+	}
+
+	public void closeUpgradeMenu ()
+	{
+		upgradeMenu.enabled = false;
+	}
+
 	public void closeSongList ()
 	{
-		Debug.Log ("ASSS");
 		songList.enabled = false;
 	}
 
