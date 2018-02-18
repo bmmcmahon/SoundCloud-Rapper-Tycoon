@@ -12,6 +12,8 @@ public class MenuEnabler : MonoBehaviour {
 	private Canvas scoreWindow;
 	private Canvas songList;
 	private Canvas upgradeMenu;
+	private AudioSource overworldMusic;
+	private AudioSource creatorMusic;
 	private Canvas gameOver;
 
 	// Use this for initialization
@@ -36,6 +38,8 @@ public class MenuEnabler : MonoBehaviour {
 		scoreWindow = GameObject.Find ("ScoreWindow").GetComponent<Canvas> ();
 		songList = GameObject.Find ("SongList").GetComponent<Canvas> ();
 		upgradeMenu = GameObject.Find ("UpgradeMenu").GetComponent<Canvas> ();
+		overworldMusic = GameObject.Find ("OverworldMusic").GetComponent<AudioSource>();
+		creatorMusic = GameObject.Find ("CreatorMusic").GetComponent<AudioSource> ();
 		gameOver = GameObject.Find ("GameOver").GetComponent<Canvas> ();
 		gameOver.enabled = false;
 		upgradeMenu.enabled = false;
@@ -102,6 +106,8 @@ public class MenuEnabler : MonoBehaviour {
 //		defaultVals ();
 		videoCreator.enabled = false;
 		animator.SetBool ("CanWalk", true);
+		stopCreatorMusic ();
+		playOverworldMusic ();
 	}
 
 //	public void default vals
@@ -109,11 +115,31 @@ public class MenuEnabler : MonoBehaviour {
 	public void openSongCreator () {
 		songCreator.enabled = true;
 		animator.SetBool ("CanWalk", false);
+		stopOverworldMusic ();
+		playCreatorMusic ();
 	}
 
 	public void openVideoCreator () {
 		videoCreator.enabled = true;
 		animator.SetBool ("CanWalk", false);
+		stopOverworldMusic ();
+		playCreatorMusic ();
+	}
+
+	public void stopOverworldMusic () {
+		overworldMusic.enabled = false;
+	}
+
+	public void playOverworldMusic () {
+		overworldMusic.enabled = true;
+	}
+
+	public void stopCreatorMusic () {
+		creatorMusic.enabled = false;
+	}
+
+	public void playCreatorMusic () {
+		creatorMusic.enabled = true;
 	}
 
 	public void openGameOver ()
