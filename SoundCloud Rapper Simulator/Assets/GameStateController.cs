@@ -79,7 +79,7 @@ public class GameStateController : MonoBehaviour {
 
 		songForVideo.ClearOptions ();
 
-		Debug.Log (money.text);
+//		Debug.Log (money.text);
 		InvokeRepeating("updateSongs", 15f, 30f);
 	}
 
@@ -96,10 +96,10 @@ public class GameStateController : MonoBehaviour {
 		sq.style = style.options [style.value].text.ToString ();
 		sq.tempo = tempo.options [tempo.value].text.ToString ();
 		sq.featuring = featuring.options [featuring.value].text.ToString ();
-		Debug.Log (sq.score);
+//		Debug.Log (sq.score);
 
 		textField.text = "";
-		Debug.Log (score.ToString());
+//		Debug.Log (score.ToString());
 		if (score < 3) {
 			scoreRundown.text = "confirmed trash.";
 		} else if (score < 5) {
