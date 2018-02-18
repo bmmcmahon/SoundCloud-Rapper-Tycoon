@@ -18,7 +18,7 @@ public class GameState
 
 	public int Level { get { return level; } set { level = value; } }
 	public double Money { get { return Math.Round(money, 2); } set { money = value; } }
-	public int Followers { get { return followers; } }
+	public int Followers { get { return 10 * followers; } }
 	public double Stuff { get { return Math.Round(stuff, 2); } }
 
 	public Equipment Microphone { get { return microphone; } }
