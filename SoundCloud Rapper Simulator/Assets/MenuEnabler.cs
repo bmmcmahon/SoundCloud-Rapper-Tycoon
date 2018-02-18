@@ -12,6 +12,7 @@ public class MenuEnabler : MonoBehaviour {
 	private Canvas scoreWindow;
 	private Canvas songList;
 	private Canvas upgradeMenu;
+	private Canvas gameOver;
 
 	// Use this for initialization
 	void Start () {
@@ -35,6 +36,8 @@ public class MenuEnabler : MonoBehaviour {
 		scoreWindow = GameObject.Find ("ScoreWindow").GetComponent<Canvas> ();
 		songList = GameObject.Find ("SongList").GetComponent<Canvas> ();
 		upgradeMenu = GameObject.Find ("UpgradeMenu").GetComponent<Canvas> ();
+		gameOver = GameObject.Find ("GameOver").GetComponent<Canvas> ();
+		gameOver.enabled = false;
 		upgradeMenu.enabled = false;
 		songList.enabled = false;
 		scoreWindow.enabled = false;
@@ -45,12 +48,12 @@ public class MenuEnabler : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
-		if (transform.position.x < -5f && transform.position.y > -1f) {
+		if (transform.position.x < -5f && transform.position.y > -1f && !scoreWindow.enabled) {
 			if (Input.GetKey (KeyCode.A)) {
 				openSongCreator ();
 			}
 		}
-		if (transform.position.x > 5.53f && transform.position.y > -1.03f) {
+		if (transform.position.x > 5.53f && transform.position.y > -1.03f && !scoreWindow.enabled) {
 			if (Input.GetKey (KeyCode.A)) {
 				openVideoCreator ();
 			}
@@ -96,9 +99,12 @@ public class MenuEnabler : MonoBehaviour {
 
 	public void closeCreators () {
 		songCreator.enabled = false;
+//		defaultVals ();
 		videoCreator.enabled = false;
 		animator.SetBool ("CanWalk", true);
 	}
+
+//	public void default vals
 
 	public void openSongCreator () {
 		songCreator.enabled = true;
@@ -107,6 +113,12 @@ public class MenuEnabler : MonoBehaviour {
 
 	public void openVideoCreator () {
 		videoCreator.enabled = true;
+		animator.SetBool ("CanWalk", false);
+	}
+
+	public void openGameOver ()
+	{
+		gameOver.enabled = true;
 		animator.SetBool ("CanWalk", false);
 	}
 }
