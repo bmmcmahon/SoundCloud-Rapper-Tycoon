@@ -9,6 +9,7 @@ public class GameStateController : MonoBehaviour {
 	private UnityEngine.UI.InputField textField;
 	public bool counting;
 	public int ttd;
+	private SongQualities sq;
 
 	private Text money;
 	private Text stuff;
@@ -24,6 +25,11 @@ public class GameStateController : MonoBehaviour {
 	private Text microphoneLevel;
 	private Text producerLevel;
 
+	private Dropdown style;
+	private Dropdown tempo;
+	private Dropdown topic;
+	private Dropdown featuring;
+
 	private MenuEnabler menuEn;
 	private int count;
 
@@ -34,6 +40,12 @@ public class GameStateController : MonoBehaviour {
 		gameState = new GameState ();
 		textField = GameObject.Find("SongCreator").GetComponentInChildren<UnityEngine.UI.InputField>();
 		menuEn = GetComponent<MenuEnabler> ();
+		sq = GetComponent<SongQualities> ();
+
+		style = GameObject.Find ("/SongCreator/Panel/Dropdown").GetComponent<Dropdown> ();
+		tempo = GameObject.Find ("/SongCreator/Panel/Dropdown (1)").GetComponent<Dropdown> ();
+		topic = GameObject.Find ("/SongCreator/Panel/Dropdown (2)").GetComponent<Dropdown> ();
+		featuring = GameObject.Find ("/SongCreator/Panel/Dropdown (3)").GetComponent<Dropdown> ();
 
 		money = GameObject.Find ("/Stats/Panel/Money").GetComponent<Text> ();
 		stuff = GameObject.Find ("/Stats/Panel/Stuff").GetComponent<Text> ();
@@ -61,6 +73,13 @@ public class GameStateController : MonoBehaviour {
 	{
 		double score = gameState.produceSong (textField.text);
 		yourSong.text = "\"" + textField.text + "\"" + " is...";
+
+		sq.topic = topic.options [topic.value].text.ToString ();
+		sq.style = style.options [style.value].text.ToString ();
+		sq.tempo = tempo.options [tempo.value].text.ToString ();
+		sq.featuring = featuring.options [featuring.value].text.ToString ();
+		Debug.Log (sq.topic);
+
 		textField.text = "";
 		Debug.Log (score.ToString());
 		if (score < 3) {
@@ -77,21 +96,25 @@ public class GameStateController : MonoBehaviour {
 		songScore.text = score + "/10";
 		menuEn.closeCreators ();
 		menuEn.openScoreWindow ();
+
 	}
 
 	public void upgradeMicrophone ()
 	{
-		gameState.Microphone.levelUp (gameState);
+		if (gameState.Money > gameState.Microphone.Cost) 
+			gameState.Microphone.levelUp (gameState);
 	}
 
 	public void upgradeComputer ()
 	{
-		gameState.Computer.levelUp (gameState);
+		if (gameState.Money > gameState.Computer.Cost) 
+			gameState.Computer.levelUp (gameState);
 	}
 
 	public void upgradeProducer ()
 	{
-		gameState.Producer.levelUp (gameState);
+		if (gameState.Money > gameState.Producer.Cost) 
+			gameState.Producer.levelUp (gameState);
 	}
 
 	public void scoreWindowContinue() 

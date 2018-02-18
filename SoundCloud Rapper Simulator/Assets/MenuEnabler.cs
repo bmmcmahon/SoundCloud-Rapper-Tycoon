@@ -15,6 +15,7 @@ public class MenuEnabler : MonoBehaviour {
 	private AudioSource overworldMusic;
 	private AudioSource creatorMusic;
 	private Canvas gameOver;
+	private Canvas NotEnoughMoney;
 
 	// Use this for initialization
 	void Start () {
