@@ -19,7 +19,7 @@ public class GameState
 	public int Level { get { return level; } set { level = value; } }
 	public double Money { get { return Math.Round(money, 2); } set { money = value; } }
 	public int Followers { get { return 10 * followers; } }
-	public double Stuff { get { return Math.Round(stuff, 2); } }
+	public double Stuff { get { return Math.Round (stuff, 2); } set { stuff = value; } }
 
 	public Equipment Microphone { get { return microphone; } }
 	public Equipment Computer { get { return computer; } }
@@ -67,13 +67,14 @@ public class GameState
 		return score;
 	}
 
-	public double produceVideo(Song song)
+	public double produceVideo(Song song, double percentage)
 	{
 
 		string debug = "Video Created. Score: {0} Profit: {1} Views: {2} UpdateLength: {3} Title: {4}";
 
 		this.money -= (10.0 + 0.10 * this.money) * this.level * 2; // Double the cost of a song
 		var video = new Video (song);
+		this.stuff -= (this.stuff * percentage);
 
 		double score = getGameScore ();
 		int views = initialListeners (score);

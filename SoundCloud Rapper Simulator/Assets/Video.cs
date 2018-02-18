@@ -17,7 +17,7 @@ public class Video
 	public double Profit { get { return profit; } set { profit = value; } }
 	public double Score { get { return score; } set { score = value; } }
 
-    public Video(Song song)
+	public Video(Song song)
     {
         this.song = song;
 		this.views = 0;
@@ -40,6 +40,5 @@ public class Video
 
 		return newProfit;
 	}
-
 
 }
