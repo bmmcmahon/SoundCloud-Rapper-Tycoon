@@ -290,5 +290,14 @@ public class GameStateController : MonoBehaviour {
 			}
 		}
 		gameState.buyStuff ();
+
+		if (gameState.getShot ()) {
+			menuEn.openShot ();
+		}
 	}
+
+//	public void openShotScreen ()
+//	{
+//		 
+//	}
 }
