@@ -7,6 +7,8 @@ public class GameStateController : MonoBehaviour {
 
 	private GameState gameState;
 	private UnityEngine.UI.InputField textField;
+	public bool counting;
+	public int ttd;
 
 	private Text money;
 	private Text stuff;
@@ -27,6 +29,8 @@ public class GameStateController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		counting = false;
+		ttd = 0;
 		gameState = new GameState ();
 		textField = GameObject.Find("SongCreator").GetComponentInChildren<UnityEngine.UI.InputField>();
 		menuEn = GetComponent<MenuEnabler> ();
@@ -113,6 +117,14 @@ public class GameStateController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(money.text != null) money.text = gameState.Money.ToString ();
+		if (gameState.Money < 0) {
+			counting = true;
+			money.color = Color.red;
+		} else {
+			counting = false;
+			money.color = Color.yellow;
+			ttd = 0;
+		}
 		followers.text = gameState.Followers.ToString ();
 		updatePrices ();
 	}
@@ -142,7 +154,15 @@ public class GameStateController : MonoBehaviour {
 		gameState.updateSongs ();
 		setUpSongList ();
 		Debug.Log (" PISS ");
+		if (counting) {
+			++ttd;
+			if (ttd >= 10) {
+				menuEn.openGameOver ();
+			}
+		}
 	}
+
+
 
 
 }

@@ -16,7 +16,7 @@ public class GameState
 	private Equipment producer;
 
 	public int Level { get { return level; } set { level = value; } }
-	public double Money { get { return money; } set { money = value; } }
+	public double Money { get { return Math.Round(money, 2); } set { money = value; } }
 	public int Followers { get { return followers; } }
 	public double Stuff { get { return stuff; } }
 
@@ -83,7 +83,7 @@ public class GameState
 
 	private int initialListeners(double score)
 	{
-		int randomFactor = new System.Random().Next(1, 6);
+		int randomFactor = new System.Random().Next(2, 7);
 		int listeners = randomFactor * (((int)score) / 2) * followers;
 
 		return listeners;
@@ -91,7 +91,7 @@ public class GameState
 
 	private double initalMoney (int listeners)
 	{	
-		double money = listeners / 50.0;
+		double money = listeners / 15.0;
 		this.money += money;
 
 		return money;
