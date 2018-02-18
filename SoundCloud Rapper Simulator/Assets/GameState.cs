@@ -16,7 +16,7 @@ public class GameState
 	private Equipment producer;
 
 	public int Level { get { return level; } set { level = value; } }
-	public double Money { get { return money; } }
+	public double Money { get { return money; } set { money = value; } }
 	public int Followers { get { return followers; } }
 	public double Stuff { get { return stuff; } }
 
@@ -28,7 +28,7 @@ public class GameState
 
 	public GameState()
 	{
-		this.followers = 0;
+		this.followers = 3;
 		this.money = 30;
 		this.level = 1;
 		this.songs = new List<Song> ();
@@ -41,7 +41,7 @@ public class GameState
 		
 	public double produceSong(string title)
 	{
-		this.money -= 10.0; // Initial cost to make song
+		this.money -= (10.0 + 0.10 * this.money) * this.level; // Initial cost to make song
 
 		var song = new Song (title);
 		double score = getGameScore ();
@@ -52,7 +52,7 @@ public class GameState
 		song.Score = score;
 		song.Profit = profit;
 
-		song.UpdateLength = new System.Random ().Next (5, 11) * (int)score;
+		song.UpdateLength = new System.Random ().Next (1, 6) * ((int)score/2);
 
 		updateFollowers (score);
 
@@ -91,7 +91,7 @@ public class GameState
 
 	private double initalMoney (int listeners)
 	{	
-		double money = listeners / 100.0;
+		double money = listeners / 50.0;
 		this.money += money;
 
 		return money;

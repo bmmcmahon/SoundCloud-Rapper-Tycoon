@@ -20,6 +20,7 @@ public class Equipment {
 	{
 		this.level += 1;
 		gameState.Level += 1;
+		gameState.Money -= this.cost;
 		this.cost *= 1.5;
 		return level;
 	}
