@@ -55,7 +55,7 @@ public class GameState
 
 		song.UpdateLength = new System.Random ().Next (1, 6) * ((int)score/2);
 
-		Debug.Log (String.Format (debug, score, profit, listeners, song.UpdateLength));
+		Debug.Log (String.Format (debug, score, Math.Round(profit, 2), listeners, song.UpdateLength));
 
 		updateFollowers (score);
 

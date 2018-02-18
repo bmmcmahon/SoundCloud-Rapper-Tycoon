@@ -39,6 +39,8 @@ public class Song
 
 		this.updateLength -= 1;
 
+		Debug.Log(String.Format("{0}. New Listeners: {1} New Profit: {2} UpdateLength: {3}", this.title, newListeners, Math.Round(newProfit,2), this.updateLength));
+
 		return newProfit;
 	}
 }
