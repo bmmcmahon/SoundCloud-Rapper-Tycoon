@@ -122,4 +122,15 @@ public class GameState
 
 		return moneyToSpend; // return how much money spent on stuff
 	}
+
+	private bool getShot()
+	{
+		var random = new System.Random();
+		int chance = random.Next (1, 16); // 1/15 chance to get shot
+		int chance2 = random.Next (1, 16);
+
+		if (chance == chance2) { return true; }
+
+		return false;
+	}
 }
