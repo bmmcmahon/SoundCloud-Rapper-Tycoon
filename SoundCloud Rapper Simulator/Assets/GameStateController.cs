@@ -134,7 +134,7 @@ public class GameStateController : MonoBehaviour {
 		}
 		videoScore.text = score + "/10";
 		menuEn.closeCreators ();
-		menuEn.openScoreWindow ();
+		menuEn.openVideoScoreWindow ();
 	}
 
 	public void upgradeMicrophone ()
