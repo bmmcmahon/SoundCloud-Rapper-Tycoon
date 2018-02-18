@@ -66,11 +66,18 @@ public class GameState
 		return score;
 	}
 
-	public void produceVideo(Song song)
+	public double produceVideo(Song song)
 	{
 		this.money -= (10.0 + 0.10 * this.money) * this.level * 2; // Double the cost of a song
 		var video = new Video (song);
+
+		double score = getGameScore ();
+		int viewers = initialListeners (score);
+		double profit = initalMoney (viewers);
+
 		this.videos.Add (video);
+
+		return score;
 	}
 
 	private void updateFollowers(double score)
