@@ -153,6 +153,7 @@ public class GameState
 	{
 		int costOfStuff = 10;
 		double moneyToSpend = 0.1 * this.money;
+		moneyToSpend = Math.Abs (moneyToSpend);
 		double newStuff = moneyToSpend / costOfStuff;
 
 		this.stuff += newStuff;
@@ -166,8 +167,8 @@ public class GameState
 		if(this.level > 5)
 		{
 			var random = new System.Random();
-			int chance = random.Next (1, 16); // 1/15 chance to get shot
-			int chance2 = random.Next (1, 16);
+			int chance = random.Next (1, 8); // 1/7 chance to get shot
+			int chance2 = random.Next (1, 8);
 
 			if (chance == chance2) 
 			{
@@ -186,6 +187,6 @@ public class GameState
 
 
 		}
-		return true;
+		return false;
 	}
 }

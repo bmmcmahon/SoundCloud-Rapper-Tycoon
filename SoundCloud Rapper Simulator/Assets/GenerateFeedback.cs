@@ -23,6 +23,12 @@ public class GenerateFeedback : MonoBehaviour {
 		r = new System.Random ();
 
 		usernames = new List<string> () {
+			"DandyHacks_Hank",
+			"DandyHacks_Bumbo",
+			"DandyHacks_Paul",
+			"DandyHacks_Wendy",
+			"DandyHacks_Jenny",
+			"DandyHacks_Paul",
 			"grammarscalar",
 			"tigermyositis",
 			"distractedsnot",
@@ -259,6 +265,7 @@ public class GenerateFeedback : MonoBehaviour {
 			"My dad won't stop playing this in the car. I hate you.",
 			"Your voice sounds like when you hear pained wheezing from the adjacent bathroom stall",
 			"You just inspired me to join a cult",
+			"who makes a " + sq.tempo + " " + sq.topic + " song in 2018? Or ever?",
 			"My mom is really in to " + sq.style + " lately",
 			"I never want to hear another " + sq.topic + " song again.",
 			sq.featuring + "'s career is over bruh",
@@ -274,6 +281,7 @@ public class GenerateFeedback : MonoBehaviour {
 			"My dog loves this song",
 			"I can relate to the line about your fear of beavers, good stuff",
 			"I find that line about people in wheelchairs offensive",
+			"With some better production you could be a star",
 			"Eat less carbs",
 			sq.style + " reminds me of my childhood",
 			sq.featuring + " was zooted for that whole verse",
@@ -284,11 +292,13 @@ public class GenerateFeedback : MonoBehaviour {
 			"Bold move sampling the Price is Right theme song. I like it.",
 			"I believe this is what the kids call 'dope'",
 			"This is a banger",
+			"guys check out my rap channel for more good raps ,",
 			"This. Is. Some. Good. Shit. Right. Here.",
 			"Ayy lmao",
 			"This song made me violently scream-vomit",
 			"You just inspired me to recycle",
 			"Whoevr disliked this song knows nothig abourt good music.",
+			"Your voice gives me that same feeling I get when I lock the bathroom stall from the inside then crawl out underneath",
 			sq.style + " makes me feel alive again",
 			"I love a good " + sq.topic + " song more than my wife and kids.",
 			sq.featuring + " was in your shadow on that track homie",
@@ -297,6 +307,8 @@ public class GenerateFeedback : MonoBehaviour {
 
 		masterpieceReviews = new List<string> () {
 			"This song convinced me to propose to my girl",
+			"It's A MASTAPIECE",
+			"Sorry my english is not so good, but this song is fucking!",
 			"Thumbs up if you're listening in 2018",
 			"My life is complete",
 			"Saw this featured on Pitchfork",
@@ -308,6 +320,14 @@ public class GenerateFeedback : MonoBehaviour {
 			sq.featuring + " puts the meow in homeowner",
 			"This sort of " + sq.tempo + " " + sq.style + " reminds me of how I found the Lord."
 		};
+
+		if (sq.featuring.Equals ("None")) {
+			masterpieceReviews.RemoveAt (masterpieceReviews.Count - 2);
+			hitReviews.RemoveAt (masterpieceReviews.Count - 2);
+			prettyGoodReviews.RemoveAt (masterpieceReviews.Count - 2);
+			disappointedReviews.RemoveAt (masterpieceReviews.Count - 2);
+			trashReviews.RemoveAt (masterpieceReviews.Count - 2);
+		}
 
 		List<string> feedback = new List<string>();
 	

@@ -39,6 +39,7 @@ public class GameStateController : MonoBehaviour {
 	private Dropdown tempo;
 	private Dropdown topic;
 	private Dropdown featuring;
+	private Slider stuffSlider;
 
 	private Dropdown songForVideo;
 
@@ -61,6 +62,7 @@ public class GameStateController : MonoBehaviour {
 		featuring = GameObject.Find ("/SongCreator/Panel/Dropdown (3)").GetComponent<Dropdown> ();
 		readComments = GameObject.Find ("/ScoreWindow/Panel/ReadComments").GetComponent<Button> ();
 		or = GameObject.Find ("/ScoreWindow/Panel/Button/Or").GetComponent<Text> ();
+		stuffSlider = GameObject.Find ("/VideoCreator/Panel/Slider").GetComponent<Slider> ();
 
 		songForVideo = GameObject.Find ("/VideoCreator/Panel/SongForVideo").GetComponent<Dropdown> ();
 
@@ -89,7 +91,9 @@ public class GameStateController : MonoBehaviour {
 		songList.text = "";
 //		readComments.enabled = false;
 		or.enabled = false;
+		videoScoreRundown.enabled = false;
 		scoreRundown.enabled = false;
+		videoScore.enabled = false;
 		songScore.enabled = false;
 
 		songForVideo.ClearOptions ();
@@ -140,18 +144,19 @@ public class GameStateController : MonoBehaviour {
 	public void videoCreated ()
 	{
 		Song song = gameState.Songs[songForVideo.value];
-		double score = gameState.produceVideo (song);
+		double score = gameState.produceVideo (song, stuffSlider.normalizedValue);
+		songForVideo.options.RemoveAt (songForVideo.value);
 		yourVideo.text = "\"" + song.Title + "\"" + " is...";
 		if (score < 3) {
-			scoreRundown.text = "cinematic filth";
+			videoScoreRundown.text = "cinematic filth";
 		} else if (score < 5) {
-			scoreRundown.text = "lofi garbage";
+			videoScoreRundown.text = "lofi garbage";
 		} else if (score < 8) {
-			scoreRundown.text = "an entertaining film!";
+			videoScoreRundown.text = "an entertaining film!";
 		} else if (score < 10) {
-			scoreRundown.text = "the next \"Thriller\"!";
+			videoScoreRundown.text = "the next \"Thriller\"!";
 		} else if (score == 10) {
-			scoreRundown.text = "a MASTAPIECE!";
+			videoScoreRundown.text = "a MASTAPIECE!";
 		}
 		videoScore.text = score + "/10";
 		menuEn.closeCreators ();
