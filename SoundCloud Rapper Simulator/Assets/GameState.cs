@@ -81,6 +81,8 @@ public class GameState
 
 		double score = (randomFactorOne * this.level) / 50 + randomFactorTwo;
 
+		if (score > 10) { return 10.00; }
+
 		return Math.Round(score, 1); // Return the score rounded to 1 decimal place
 	}
 
