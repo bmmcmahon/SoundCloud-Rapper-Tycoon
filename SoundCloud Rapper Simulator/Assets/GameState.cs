@@ -162,10 +162,14 @@ public class GameState
 
 	public bool getShot()
 	{
-		var random = new System.Random();
-		int chance = random.Next (1, 16); // 1/15 chance to get shot
-		int chance2 = random.Next (1, 16);
+		if(this.level > 5)
+		{
+			var random = new System.Random();
+			int chance = random.Next (1, 16); // 1/15 chance to get shot
+			int chance2 = random.Next (1, 16);
 
-		return chance == chance2;
+			return chance == chance2;
+		}
+		return false;
 	}
 }
