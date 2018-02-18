@@ -72,8 +72,14 @@ public class GameState
 		var video = new Video (song);
 
 		double score = getGameScore ();
-		int viewers = initialListeners (score);
-		double profit = initalMoney (viewers);
+		int views = initialListeners (score);
+		double profit = initalMoney (views);
+
+		video.Views = views;
+		video.Profit = profit;
+		video.Score = score;
+
+		video.UpdateLength = new System.Random ().Next (1, 6) * ((int)score/2);
 
 		this.videos.Add (video);
 
@@ -123,6 +129,15 @@ public class GameState
 		for(int i = 0; i < this.songs.Count; ++i)
 		{ 
 			double newProfit = this.songs [i].updateStats (this.followers);
+			this.money += newProfit;
+		}
+	}
+
+	public void updateVideos()
+	{
+		for(int i = 0; i < this.videos.Count; ++i)
+		{ 
+			double newProfit = this.videos [i].updateStats (this.followers);
 			this.money += newProfit;
 		}
 	}
