@@ -16,6 +16,7 @@ public class MenuEnabler : MonoBehaviour {
 	private AudioSource creatorMusic;
 	private Canvas gameOver;
 	private Canvas notEnoughMoney;
+	private Canvas videoScoreWindow;
 
 	// Use this for initialization
 	void Start () {
@@ -43,6 +44,8 @@ public class MenuEnabler : MonoBehaviour {
 		creatorMusic = GameObject.Find ("CreatorMusic").GetComponent<AudioSource> ();
 		gameOver = GameObject.Find ("GameOver").GetComponent<Canvas> ();
 		notEnoughMoney = GameObject.Find ("NotEnoughMoney").GetComponent<Canvas> ();
+		videoScoreWindow = GameObject.Find ("VideoScoreWindow").GetComponent<Canvas> ();
+		videoScoreWindow.enabled = false;
 		notEnoughMoney.enabled = false;
 		gameOver.enabled = false;
 		upgradeMenu.enabled = false;
@@ -79,9 +82,19 @@ public class MenuEnabler : MonoBehaviour {
 		scoreWindow.enabled = true;
 	}
 
+	public void openVideoScoreWindow()
+	{
+		videoScoreWindow.enabled = true;
+	}
+
 	public void closeScoreWindow ()
 	{
 		scoreWindow.enabled = false;
+	}
+
+	public void closeVideoScoreWindow ()
+	{
+		videoScoreWindow.enabled = false;
 	}
 
 	public void openSongList ()

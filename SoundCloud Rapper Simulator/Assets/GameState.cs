@@ -26,6 +26,7 @@ public class GameState
 	public Equipment Producer { get { return producer; } }
 
 	public List<Song> Songs { get { return songs; } }
+	public List<Video> Videos { get { return videos; } }
 
 	public GameState()
 	{
