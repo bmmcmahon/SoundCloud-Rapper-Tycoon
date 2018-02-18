@@ -181,6 +181,7 @@ public class MenuEnabler : MonoBehaviour {
 	public void openFeedBackScreen()
 	{
 		feedBackScreen.enabled = true;
+
 	}
 
 	public void closeFeedBackScreen()

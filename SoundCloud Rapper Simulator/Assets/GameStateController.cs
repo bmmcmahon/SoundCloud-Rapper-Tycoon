@@ -186,6 +186,9 @@ public class GameStateController : MonoBehaviour {
 	{
 		menuEn.openFeedBackScreen ();
 		menuEn.closeScoreWindow ();
+//		readComments.gameObject.SetActive (false);
+		scoreWindowContinue ();
+		or.enabled = false;
 	}
 
 	public void scoreWindowContinue() 
