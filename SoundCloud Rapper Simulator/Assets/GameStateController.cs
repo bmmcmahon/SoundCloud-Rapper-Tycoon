@@ -101,20 +101,26 @@ public class GameStateController : MonoBehaviour {
 
 	public void upgradeMicrophone ()
 	{
-		if (gameState.Money > gameState.Microphone.Cost) 
+		if (gameState.Money > gameState.Microphone.Cost)
 			gameState.Microphone.levelUp (gameState);
+		else
+			menuEn.openNotEnoughMoney ();
 	}
 
 	public void upgradeComputer ()
 	{
 		if (gameState.Money > gameState.Computer.Cost) 
 			gameState.Computer.levelUp (gameState);
+		else
+			menuEn.openNotEnoughMoney ();
 	}
 
 	public void upgradeProducer ()
 	{
 		if (gameState.Money > gameState.Producer.Cost) 
 			gameState.Producer.levelUp (gameState);
+		else
+			menuEn.openNotEnoughMoney ();
 	}
 
 	public void scoreWindowContinue() 

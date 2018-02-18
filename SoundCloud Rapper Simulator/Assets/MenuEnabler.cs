@@ -15,7 +15,7 @@ public class MenuEnabler : MonoBehaviour {
 	private AudioSource overworldMusic;
 	private AudioSource creatorMusic;
 	private Canvas gameOver;
-	private Canvas NotEnoughMoney;
+	private Canvas notEnoughMoney;
 
 	// Use this for initialization
 	void Start () {
@@ -42,6 +42,8 @@ public class MenuEnabler : MonoBehaviour {
 		overworldMusic = GameObject.Find ("OverworldMusic").GetComponent<AudioSource>();
 		creatorMusic = GameObject.Find ("CreatorMusic").GetComponent<AudioSource> ();
 		gameOver = GameObject.Find ("GameOver").GetComponent<Canvas> ();
+		notEnoughMoney = GameObject.Find ("NotEnoughMoney").GetComponent<Canvas> ();
+		notEnoughMoney.enabled = false;
 		gameOver.enabled = false;
 		upgradeMenu.enabled = false;
 		songList.enabled = false;
@@ -147,5 +149,15 @@ public class MenuEnabler : MonoBehaviour {
 	{
 		gameOver.enabled = true;
 		animator.SetBool ("CanWalk", false);
+	}
+
+	public void openNotEnoughMoney ()
+	{
+		notEnoughMoney.enabled = true;
+	}
+
+	public void closeNotEnoughMoney ()
+	{
+		notEnoughMoney.enabled = false;
 	}
 }
