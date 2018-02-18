@@ -153,7 +153,6 @@ public class GameStateController : MonoBehaviour {
 	{
 		gameState.updateSongs ();
 		setUpSongList ();
-		Debug.Log (" PISS ");
 		if (counting) {
 			++ttd;
 			if (ttd >= 10) {
