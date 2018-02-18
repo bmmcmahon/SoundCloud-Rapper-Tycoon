@@ -41,9 +41,9 @@ public class GameState
 		
 	public double produceSong(string title)
 	{
-//		var debug = "Song Created. {0}", "TEST";
+		string debug = "Song Created. Score: {0} Profit: {1} Listeners: {2} UpdateLength: {3}";
+
 		this.money -= (10.0 + 0.10 * this.money) * this.level; // Initial cost to make song
-//		Debug.Log(debug);
 		var song = new Song (title);
 		double score = getGameScore ();
 		int listeners = initialListeners (score);
@@ -54,6 +54,8 @@ public class GameState
 		song.Profit = profit;
 
 		song.UpdateLength = new System.Random ().Next (1, 6) * ((int)score/2);
+
+		Debug.Log (String.Format (debug, score, profit, listeners, song.UpdateLength));
 
 		updateFollowers (score);
 
