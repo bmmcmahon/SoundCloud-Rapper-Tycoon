@@ -12,10 +12,15 @@ public class GenerateFeedback : MonoBehaviour {
 	private List<string> prettyGoodReviews;
 	private List<string> hitReviews;
 	private List<string> masterpieceReviews;
+	private List<string> usernames;
+	private System.Random r;
+
 
 	// Use this for initialization
 	void Start () {
 		sq = GetComponent<SongQualities> ();
+
+		r = new System.Random ();
 
 		trashReviews = new List<string> () {
 			"My grandma can rap better than this",
@@ -92,6 +97,209 @@ public class GenerateFeedback : MonoBehaviour {
 			sq.featuring + " puts the meow in homeowner",
 			"This sort of " + sq.tempo + " " + sq.style + " reminds me of how I found the Lord."
 		};
+
+		usernames = new List<string> () {
+			"grammarscalar",
+			"tigermyositis",
+			"distractedsnot",
+			"boundlesscobol",
+			"lacunasamoan",
+			"terrestrialfrowning",
+			"gruesomeinterest",
+			"stunmoustache",
+			"unsureproceed",
+			"pommeectoderm",
+			"soupyannounce",
+			"whiskeygravel",
+			"lobsterskimpy",
+			"fingerdule",
+			"touringmisty",
+			"peanutargument",
+			"stairtrashy",
+			"bailequable",
+			"verdeterrible",
+			"awayledger",
+			"capsulevhs",
+			"chewingpunish",
+			"leggingstoxic",
+			"nikeriot",
+			"slidechatting",
+			"shouldersworkflow",
+			"acridpillar",
+			"glitchessmartie",
+			"warrenpies",
+			"porridgestale",
+			"skulkfrog",
+			"indusfun",
+			"ecozonewicked",
+			"cardiganporsche",
+			"brilliantbitter",
+			"mutableevents",
+			"devastatedsunspot",
+			"chamaeleonnicker",
+			"immaterialartiste",
+			"aortashrink",
+			"ballersoiled",
+			"peelerpussface",
+			"animalnot",
+			"remindintegers",
+			"andesmixed",
+			"paypalhitch",
+			"masonenjoy",
+			"rosacearepellent",
+			"pignutraisin",
+			"strikethroughbarman",
+			"handballhere",
+			"unicorncortaid",
+			"activefunding",
+			"embedstringy",
+			"urchinfoul",
+			"spinnercottage",
+			"blackssneaky",
+			"entirehovers",
+			"ranchersplantar",
+			"zesteroffense",
+			"maleshunter",
+			"thesesdandelion",
+			"apparentannouncer",
+			"quinoavalid",
+			"fireworksdad",
+			"wagoninterrobang",
+			"victorsame",
+			"luckmorello",
+			"moistdisney",
+			"chapexamples",
+			"muffinvisual",
+			"yelppenumbra",
+			"petitepackets",
+			"musesniveling",
+			"selfiesanion",
+			"drugwheelchair",
+			"shakypyrenees",
+			"caramelizedcaesium",
+			"freelygroundage",
+			"buttirritate",
+			"barcodeoberon",
+			"greasefission",
+			"brazenthermometer",
+			"fieryforefinger",
+			"honeycombmessenger",
+			"wakeinject",
+			"truedelphinus",
+			"beerjugular",
+			"castingsing",
+			"covetvegetable",
+			"iodineglaucoma",
+			"flapjackhelicopter",
+			"filmbellatrix",
+			"bumpervastitas",
+			"nailsunflavored",
+			"alluviumsybase",
+			"euroreal",
+			"reducehypnotic",
+			"glaciersmuth",
+			"incenterfrighten",
+			"suspendelements",
+			"skiastatine",
+			"marchinvents",
+			"sweetcornbony",
+			"passionatereferee",
+			"radonrye",
+			"mainmastforsaken",
+			"skipstatues",
+			"snufflefeats",
+			"abswilted",
+			"definecurl",
+			"wusspitter",
+			"ploverduration",
+			"bosuntrite",
+			"goringwake",
+			"multipackmars",
+			"dominancesit",
+			"denebcrunchy",
+			"uniquechimp",
+			"spillscallop",
+			"ignoramusbuilding",
+			"villainapples",
+			"microphoneunfolded",
+			"tougharboreal",
+			"skillfuldirectory",
+			"thankfulaffine",
+			"indiumimpartial",
+			"crowhopwhipstaff",
+			"fallenpoorly",
+			"infamousmammoth",
+			"playmixcloud",
+			"labcoatchronic",
+			"yokecolumba",
+			"deadpanquinoa",
+			"greatestwazzack",
+			"composedcheese",
+			"displaceringtone",
+			"structuredesk",
+			"humbugear",
+			"geekambush",
+			"fieryhush",
+			"carefuloptimal",
+			"workablereeky",
+			"serenenino",
+			"pullingfirsthand",
+			"fondueballaster",
+			"saucepanpoised",
+			"bunsenurgonian",
+			"cervicalcompeting",
+			"experiencephoebe",
+			"inspectpiano",
+			"spleenyoctane",
+			"rascalpoo",
+			"teemingclimb",
+			"blueshiftbeach",
+			"strippingpoints",
+			"fonticonshoot",
+			"chivetwitter",
+			"coughpuffin",
+			"healthrichard",
+			"lamerhinoceros",
+			"adaptationribbon",
+			"mobiledietician",
+			"zombiefilly",
+			"stationaryregret",
+			"refluxrhyming",
+			"pistachioweepy",
+			"succinctlookah",
+			"tollspeaking",
+			"fizzkeystone",
+			"vigorousstammer",
+			"lemongrassdelicate",
+			"standingbuzzard",
+			"geezergritting",
+			"gasbagsquadron",
+			"wigglebolt",
+			"presstenderloin",
+			"pacifictickets",
+			"leapabject",
+			"sciencescitrine",
+			"receivedgoogle",
+			"doorkingdom",
+			"towheeshop",
+			"cobbledworried",
+			"chinataboo",
+			"lavastatics",
+			"bumpflower",
+			"barragedietary",
+			"aapproach",
+			"opencarttuple",
+			"extremumeof",
+			"bloomingoctopus",
+			"paragraphafraid",
+			"factsallege",
+			"sunnycaper",
+			"macduipreference",
+			"messagingbewildered",
+			"bonellinomination",
+			"querulousstringed",
+			"joyfulthaw"
+		};
 	}
 	
 	// Update is called once per frame
@@ -106,16 +314,14 @@ public class GenerateFeedback : MonoBehaviour {
 		for (int i = 0; i < 3; i++) {
 			string tempFeedback;
 			do {
-				tempFeedback = "\"" + GetReview () + "\"\n";
+				tempFeedback = "\"" + GetReview () + "\" - " + GetRandomUsername () + "\n";
 			} while(feedback.Contains(tempFeedback));
-			feedback[i] = tempFeedback;
+			feedback.Add(tempFeedback);
 		}
 		return feedback;
 	}
 
 	public string GetReview () {
-
-		System.Random r = new System.Random ();
 
 		// trash
 		if (sq.score < 3) {
@@ -141,5 +347,9 @@ public class GenerateFeedback : MonoBehaviour {
 		else {
 			return masterpieceReviews [r.Next (masterpieceReviews.Count)];
 		}
+	}
+
+	public string GetRandomUsername () {
+		return usernames [r.Next (usernames.Count)];
 	}
 }
