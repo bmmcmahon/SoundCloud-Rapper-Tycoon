@@ -9,6 +9,7 @@ public class GameState
 	private double money;
 	private int level;
 	private List<Song> songs;
+	private List<Video> videos;
 	private double stuff;
 
 	private Equipment microphone;
@@ -32,6 +33,7 @@ public class GameState
 		this.money = 30;
 		this.level = 1;
 		this.songs = new List<Song> ();
+		this.videos = new List<Video> ();
 		this.stuff = 1;
 
 		microphone = new Equipment ();
@@ -62,6 +64,13 @@ public class GameState
 		this.songs.Add (song);
 
 		return score;
+	}
+
+	public void produceVideo(Song song)
+	{
+		this.money -= (10.0 + 0.10 * this.money) * this.level * 2; // Double the cost of a song
+		var video = new Video (song);
+		this.videos.Add (video);
 	}
 
 	private void updateFollowers(double score)
