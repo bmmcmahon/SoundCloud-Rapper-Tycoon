@@ -15,7 +15,7 @@ public class Song
 	public double Score { get { return score; } set { score = value; } }
 	public int Listeners { get { return listeners; } set { listeners = value; } }
 	public double Profit { get { return profit; } set { profit = value; } }
-	public int UpdateLength { set { updateLength = value; } }
+	public int UpdateLength { get { return updateLength; } set { updateLength = value; } }
 
 	public Song(string title)
 	{
