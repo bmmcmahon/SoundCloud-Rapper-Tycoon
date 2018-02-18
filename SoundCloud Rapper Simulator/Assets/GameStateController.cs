@@ -10,6 +10,7 @@ public class GameStateController : MonoBehaviour {
 	public bool counting;
 	public int ttd;
 	private SongQualities sq;
+	private GenerateFeedback gf;
 
 	private Text money;
 	private Text stuff;
@@ -28,7 +29,12 @@ public class GameStateController : MonoBehaviour {
 	private Text microphoneLevel;
 	private Text producerLevel;
 	private Text playerLevel;
+	private Text comment1;
+	private Text comment2;
+	private Text comment3;
 
+	private Text or;
+	private Button readComments;
 	private Dropdown style;
 	private Dropdown tempo;
 	private Dropdown topic;
@@ -47,11 +53,14 @@ public class GameStateController : MonoBehaviour {
 		textField = GameObject.Find("SongCreator").GetComponentInChildren<UnityEngine.UI.InputField>();
 		menuEn = GetComponent<MenuEnabler> ();
 		sq = GetComponent<SongQualities> ();
+		gf = GetComponent<GenerateFeedback> ();
 
 		style = GameObject.Find ("/SongCreator/Panel/Dropdown").GetComponent<Dropdown> ();
 		tempo = GameObject.Find ("/SongCreator/Panel/Dropdown (1)").GetComponent<Dropdown> ();
 		topic = GameObject.Find ("/SongCreator/Panel/Dropdown (2)").GetComponent<Dropdown> ();
 		featuring = GameObject.Find ("/SongCreator/Panel/Dropdown (3)").GetComponent<Dropdown> ();
+		readComments = GameObject.Find ("/ScoreWindow/Panel/ReadComments").GetComponent<Button> ();
+		or = GameObject.Find ("/ScoreWindow/Panel/Button/Or").GetComponent<Text> ();
 
 		songForVideo = GameObject.Find ("/VideoCreator/Panel/SongForVideo").GetComponent<Dropdown> ();
 
@@ -72,8 +81,14 @@ public class GameStateController : MonoBehaviour {
 		computerLevel = GameObject.Find ("/UpgradeMenu/Panel/ComputerLevel").GetComponent<Text> ();
 		microphoneLevel = GameObject.Find ("/UpgradeMenu/Panel/MicrophoneLevel").GetComponent<Text> ();
 		producerLevel = GameObject.Find ("/UpgradeMenu/Panel/ProducerLevel").GetComponent<Text> ();
+		comment1 = GameObject.Find ("/FeedBackScreen/Panel/Comment1").GetComponent<Text> ();
+		comment2 = GameObject.Find ("/FeedBackScreen/Panel/Comment2").GetComponent<Text> ();
+		comment3 = GameObject.Find ("/FeedBackScreen/Panel/Comment3").GetComponent<Text> ();
+
 
 		songList.text = "";
+//		readComments.enabled = false;
+		or.enabled = false;
 		scoreRundown.enabled = false;
 		songScore.enabled = false;
 
@@ -96,6 +111,10 @@ public class GameStateController : MonoBehaviour {
 		sq.style = style.options [style.value].text.ToString ();
 		sq.tempo = tempo.options [tempo.value].text.ToString ();
 		sq.featuring = featuring.options [featuring.value].text.ToString ();
+		List<string> comments = gf.Generate ();
+		comment1.text = comments [0];
+		comment2.text = comments [1];
+		comment3.text = comments [2];
 //		Debug.Log (sq.score);
 
 		textField.text = "";
@@ -112,8 +131,10 @@ public class GameStateController : MonoBehaviour {
 			scoreRundown.text = "a MASTAPIECE!";
 		}
 		songScore.text = score + "/10";
+		readComments.gameObject.SetActive (false);
 		menuEn.closeCreators ();
 		menuEn.openScoreWindow ();
+
 	}
 
 	public void videoCreated ()
@@ -161,12 +182,24 @@ public class GameStateController : MonoBehaviour {
 			menuEn.openNotEnoughMoney ();
 	}
 
+	public void openFeedBackScreen ()
+	{
+		menuEn.openFeedBackScreen ();
+		menuEn.closeScoreWindow ();
+	}
+
 	public void scoreWindowContinue() 
 	{
 		if (scoreRundown.enabled) {
 			menuEn.closeScoreWindow ();
+			readComments.gameObject.SetActive (false);
+			or.enabled = false;
+		} else {
+			readComments.gameObject.SetActive (true);
+			or.enabled = true;
 		}
 		flipScoreRundownEnabled ();
+		//enable button here
 
 	}
 
