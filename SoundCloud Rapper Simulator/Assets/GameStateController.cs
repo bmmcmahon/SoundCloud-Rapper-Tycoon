@@ -173,7 +173,7 @@ public class GameStateController : MonoBehaviour {
 	public void videoScoreWindowContinue()
 	{
 		if (videoScoreRundown.enabled) {
-			menuEn.closeScoreWindow ();
+			menuEn.closeVideoScoreWindow ();
 		}
 		flipVideoScoreRundownEnabled ();
 	}
