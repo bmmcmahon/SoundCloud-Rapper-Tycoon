@@ -180,10 +180,11 @@ public class GameState
 
 				//Gain 2x Followers for gettin shot
 				this.followers *= 2;
+				return true;
 			}
 
 
 		}
-		return false;
+		return true;
 	}
 }
