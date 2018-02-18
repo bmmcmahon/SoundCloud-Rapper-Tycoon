@@ -32,7 +32,7 @@ public class GameState
 		this.money = 30;
 		this.level = 1;
 		this.songs = new List<Song> ();
-		this.stuff = 2.5;
+		this.stuff = 1;
 
 		microphone = new Equipment ();
 		computer = new Equipment ();
@@ -123,14 +123,12 @@ public class GameState
 		return moneyToSpend; // return how much money spent on stuff
 	}
 
-	private bool getShot()
+	public bool getShot()
 	{
 		var random = new System.Random();
 		int chance = random.Next (1, 16); // 1/15 chance to get shot
 		int chance2 = random.Next (1, 16);
 
-		if (chance == chance2) { return true; }
-
-		return false;
+		return chance == chance2;
 	}
 }
