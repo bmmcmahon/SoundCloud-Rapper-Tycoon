@@ -157,6 +157,7 @@ public class GameStateController : MonoBehaviour {
 			ttd = 0;
 		}
 		followers.text = gameState.Followers.ToString ();
+		stuff.text = gameState.Stuff.ToString () + " (g)";
 		updatePrices ();
 		playerLevel.text = "Lv. " + gameState.Level.ToString ();
 	}
@@ -191,9 +192,6 @@ public class GameStateController : MonoBehaviour {
 				menuEn.openGameOver ();
 			}
 		}
+		gameState.buyStuff ();
 	}
-
-
-
-
 }
