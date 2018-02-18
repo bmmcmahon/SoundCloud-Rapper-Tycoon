@@ -41,8 +41,9 @@ public class GameState
 		
 	public double produceSong(string title)
 	{
+//		var debug = "Song Created. {0}", "TEST";
 		this.money -= (10.0 + 0.10 * this.money) * this.level; // Initial cost to make song
-
+//		Debug.Log(debug);
 		var song = new Song (title);
 		double score = getGameScore ();
 		int listeners = initialListeners (score);

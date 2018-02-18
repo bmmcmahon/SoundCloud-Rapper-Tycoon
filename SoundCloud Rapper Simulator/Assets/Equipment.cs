@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Equipment {
 
@@ -8,7 +9,7 @@ public class Equipment {
 	private double cost;
 
 	public int Level { get { return level; } }
-	public double Cost { get { return cost; } }
+	public double Cost { get { return Math.Round(cost, 2); } }
 
 	public Equipment()
 	{
@@ -20,8 +21,10 @@ public class Equipment {
 	{
 		this.level += 1;
 		gameState.Level += 1;
+
 		gameState.Money -= this.cost;
 		this.cost *= 1.5;
+
 		return level;
 	}
 
