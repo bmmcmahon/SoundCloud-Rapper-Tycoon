@@ -18,7 +18,7 @@ public class GameState
 
 	public int Level { get { return level; } set { level = value; } }
 	public double Money { get { return Math.Round(money, 2); } set { money = value; } }
-	public int Followers { get { return followers; } }
+	public int Followers { get { return 10 * followers; } }
 	public double Stuff { get { return Math.Round(stuff, 2); } }
 
 	public Equipment Microphone { get { return microphone; } }
@@ -168,8 +168,23 @@ public class GameState
 			int chance = random.Next (1, 16); // 1/15 chance to get shot
 			int chance2 = random.Next (1, 16);
 
-			return chance == chance2;
+			if (chance == chance2) 
+			{
+				// Reset all levels to 1 - you got robbed son
+				this.microphone = new Equipment ();
+				this.computer = new Equipment ();
+				this.producer = new Equipment ();
+
+				// Loose half your money - Gotta pay your Bills
+				this.money /= 2.0;
+
+				//Gain 2x Followers for gettin shot
+				this.followers *= 2;
+				return true;
+			}
+
+
 		}
-		return false;
+		return true;
 	}
 }
