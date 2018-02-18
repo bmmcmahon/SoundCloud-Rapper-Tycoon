@@ -177,4 +177,14 @@ public class MenuEnabler : MonoBehaviour {
 	{
 		notEnoughMoney.enabled = false;
 	}
+
+	public void openFeedBackScreen()
+	{
+		feedBackScreen.enabled = true;
+	}
+
+	public void closeFeedBackScreen()
+	{
+		feedBackScreen.enabled = false;
+	}
 }
