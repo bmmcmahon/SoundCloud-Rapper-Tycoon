@@ -17,6 +17,7 @@ public class MenuEnabler : MonoBehaviour {
 	private Canvas gameOver;
 	private Canvas notEnoughMoney;
 	private Canvas videoScoreWindow;
+	private Canvas feedBackScreen;
 
 	// Use this for initialization
 	void Start () {
@@ -45,6 +46,8 @@ public class MenuEnabler : MonoBehaviour {
 		gameOver = GameObject.Find ("GameOver").GetComponent<Canvas> ();
 		notEnoughMoney = GameObject.Find ("NotEnoughMoney").GetComponent<Canvas> ();
 		videoScoreWindow = GameObject.Find ("VideoScoreWindow").GetComponent<Canvas> ();
+		feedBackScreen = GameObject.Find ("FeedBackScreen").GetComponent<Canvas> ();
+		feedBackScreen.enabled = false;
 		videoScoreWindow.enabled = false;
 		notEnoughMoney.enabled = false;
 		gameOver.enabled = false;
