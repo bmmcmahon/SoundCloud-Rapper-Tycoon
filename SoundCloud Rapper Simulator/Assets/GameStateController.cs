@@ -15,9 +15,11 @@ public class GameStateController : MonoBehaviour {
 	private Text stuff;
 	private Text followers;
 	private Text scoreRundown;
+	private Text videoScoreRundown;
 	private Text yourSong;
 	private Text yourVideo;
 	private Text songScore;
+	private Text videoScore;
 	private Text songList;
 	private Text computerPrice;
 	private Text microphonePrice;
@@ -58,9 +60,11 @@ public class GameStateController : MonoBehaviour {
 		stuff = GameObject.Find ("/Stats/Panel/Stuff").GetComponent<Text> ();
 		followers = GameObject.Find ("/Stats/Panel/Followers").GetComponent<Text> ();
 		scoreRundown = GameObject.Find ("/ScoreWindow/Panel/ScoreRundown").GetComponent<Text> ();
+		videoScoreRundown = GameObject.Find ("/VideoScoreWindow/Panel/ScoreRundown").GetComponent<Text> ();
 		yourSong = GameObject.Find ("/ScoreWindow/Panel/Your Song").GetComponent<Text> ();
-		yourSong = GameObject.Find ("/VideoScoreWindow/Panel/Your Song").GetComponent<Text> ();
+		yourVideo = GameObject.Find ("/VideoScoreWindow/Panel/Your Song").GetComponent<Text> ();
 		songScore = GameObject.Find ("/ScoreWindow/Panel/Score").GetComponent<Text> ();
+		videoScore = GameObject.Find ("/VideoScoreWindow/Panel/Score").GetComponent<Text> ();
 		songList = GameObject.Find ("/SongList/Panel/Text").GetComponent<Text> ();
 		computerPrice = GameObject.Find ("/UpgradeMenu/Panel/ComputerPrice").GetComponent<Text> ();
 		microphonePrice = GameObject.Find ("/UpgradeMenu/Panel/MicrophonePrice").GetComponent<Text> ();
@@ -75,7 +79,7 @@ public class GameStateController : MonoBehaviour {
 
 		songForVideo.ClearOptions ();
 
-		Debug.Log (money.text);
+//		Debug.Log (money.text);
 		InvokeRepeating("updateSongs", 15f, 30f);
 	}
 
@@ -92,10 +96,10 @@ public class GameStateController : MonoBehaviour {
 		sq.style = style.options [style.value].text.ToString ();
 		sq.tempo = tempo.options [tempo.value].text.ToString ();
 		sq.featuring = featuring.options [featuring.value].text.ToString ();
-		Debug.Log (sq.score);
+//		Debug.Log (sq.score);
 
 		textField.text = "";
-		Debug.Log (score.ToString());
+//		Debug.Log (score.ToString());
 		if (score < 3) {
 			scoreRundown.text = "confirmed trash.";
 		} else if (score < 5) {
@@ -115,7 +119,22 @@ public class GameStateController : MonoBehaviour {
 	public void videoCreated ()
 	{
 		Song song = gameState.Songs[songForVideo.value];
-		double score = gameState.produceVideo (gameState.Songs[songForVideo.value]);
+		double score = gameState.produceVideo (song);
+		yourVideo.text = "\"" + song.Title + "\"" + " is...";
+		if (score < 3) {
+			scoreRundown.text = "cinematic filth";
+		} else if (score < 5) {
+			scoreRundown.text = "lofi garbage";
+		} else if (score < 8) {
+			scoreRundown.text = "an entertaining film!";
+		} else if (score < 10) {
+			scoreRundown.text = "the next \"Thriller\"!";
+		} else if (score == 10) {
+			scoreRundown.text = "a MASTAPIECE!";
+		}
+		videoScore.text = score + "/10";
+		menuEn.closeCreators ();
+		menuEn.openScoreWindow ();
 	}
 
 	public void upgradeMicrophone ()
@@ -150,6 +169,14 @@ public class GameStateController : MonoBehaviour {
 		flipScoreRundownEnabled ();
 
 	}
+
+	public void videoScoreWindowContinue()
+	{
+		if (videoScoreRundown.enabled) {
+			menuEn.closeScoreWindow ();
+		}
+		flipVideoScoreRundownEnabled ();
+	}
 //
 	public void flipScoreRundownEnabled ()
 	{
@@ -159,6 +186,18 @@ public class GameStateController : MonoBehaviour {
 		} else {
 			scoreRundown.enabled = true;
 			songScore.enabled = true;
+		}
+	}
+
+	public void flipVideoScoreRundownEnabled ()
+	{
+		if (videoScoreRundown.enabled) {
+			videoScoreRundown.enabled = false;
+			videoScore.enabled = false;
+
+		} else {
+			videoScoreRundown.enabled = true;
+			videoScore.enabled = true;
 		}
 	}
 	
@@ -194,8 +233,13 @@ public class GameStateController : MonoBehaviour {
 		songList.text = "";
 		foreach (var song in gameState.Songs) {
 			string name = song.Title;
-			string listens = song.Listeners.ToString();
+			string listens = song.Listeners.ToString ();
 			songList.text += "Song \""+ name +"\" has " + listens + " listens. " + song.Score + "/10\n";
+		}
+		foreach (var video in gameState.Videos) {
+			string name = video.Title;
+			string view = video.Views.ToString ();
+			songList.text += "\nVideo \"" + name + "\" has " + view + " listens. " + video.Score + "/10";
 		}
 	}
 

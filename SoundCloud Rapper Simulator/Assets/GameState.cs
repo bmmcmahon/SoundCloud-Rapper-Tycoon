@@ -26,6 +26,7 @@ public class GameState
 	public Equipment Producer { get { return producer; } }
 
 	public List<Song> Songs { get { return songs; } }
+	public List<Video> Videos { get { return videos; } }
 
 	public GameState()
 	{
@@ -68,6 +69,9 @@ public class GameState
 
 	public double produceVideo(Song song)
 	{
+
+		string debug = "Video Created. Score: {0} Profit: {1} Views: {2} UpdateLength: {3}";
+
 		this.money -= (10.0 + 0.10 * this.money) * this.level * 2; // Double the cost of a song
 		var video = new Video (song);
 
@@ -80,6 +84,8 @@ public class GameState
 		video.Score = score;
 
 		video.UpdateLength = new System.Random ().Next (1, 6) * ((int)score/2);
+
+		Debug.Log (String.Format (debug, score, Math.Round(profit, 2), views, video.UpdateLength));
 
 		this.videos.Add (video);
 
