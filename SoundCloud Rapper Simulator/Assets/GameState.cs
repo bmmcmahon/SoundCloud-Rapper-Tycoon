@@ -171,9 +171,9 @@ public class GameState
 			if (chance == chance2) 
 			{
 				// Reset all levels to 1 - you got robbed son
-				this.Microphone.Level = new Equipment ();
-				this.Computer.Level = new Equipment ();
-				this.Producer = new Equipment ();
+				this.microphone = new Equipment ();
+				this.computer = new Equipment ();
+				this.producer = new Equipment ();
 
 				// Loose half your money - Gotta pay your Bills
 				this.money /= 2.0;
