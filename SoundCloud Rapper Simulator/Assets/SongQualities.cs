@@ -10,6 +10,7 @@ public class SongQualities : MonoBehaviour {
 	public string topic;
 	public string featuring;
 	public string title;
+	public double score;
 
 	// Use this for initialization
 	void Start () {

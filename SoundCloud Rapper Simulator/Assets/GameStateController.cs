@@ -16,6 +16,7 @@ public class GameStateController : MonoBehaviour {
 	private Text followers;
 	private Text scoreRundown;
 	private Text yourSong;
+	private Text yourVideo;
 	private Text songScore;
 	private Text songList;
 	private Text computerPrice;
@@ -58,6 +59,7 @@ public class GameStateController : MonoBehaviour {
 		followers = GameObject.Find ("/Stats/Panel/Followers").GetComponent<Text> ();
 		scoreRundown = GameObject.Find ("/ScoreWindow/Panel/ScoreRundown").GetComponent<Text> ();
 		yourSong = GameObject.Find ("/ScoreWindow/Panel/Your Song").GetComponent<Text> ();
+		yourSong = GameObject.Find ("/VideoScoreWindow/Panel/Your Song").GetComponent<Text> ();
 		songScore = GameObject.Find ("/ScoreWindow/Panel/Score").GetComponent<Text> ();
 		songList = GameObject.Find ("/SongList/Panel/Text").GetComponent<Text> ();
 		computerPrice = GameObject.Find ("/UpgradeMenu/Panel/ComputerPrice").GetComponent<Text> ();
@@ -84,11 +86,13 @@ public class GameStateController : MonoBehaviour {
 
 		songForVideo.AddOptions(new List<string> { gameState.Songs[gameState.Songs.Count - 1].Title });
 
+		sq.title = textField.text;
+		sq.score = gameState.Songs [gameState.Songs.Count-1].Score;
 		sq.topic = topic.options [topic.value].text.ToString ();
 		sq.style = style.options [style.value].text.ToString ();
 		sq.tempo = tempo.options [tempo.value].text.ToString ();
 		sq.featuring = featuring.options [featuring.value].text.ToString ();
-		Debug.Log (sq.topic);
+		Debug.Log (sq.score);
 
 		textField.text = "";
 		Debug.Log (score.ToString());
@@ -106,6 +110,12 @@ public class GameStateController : MonoBehaviour {
 		songScore.text = score + "/10";
 		menuEn.closeCreators ();
 		menuEn.openScoreWindow ();
+	}
+
+	public void videoCreated ()
+	{
+		Song song = gameState.Songs[songForVideo.value];
+		double score = gameState.produceVideo (gameState.Songs[songForVideo.value]);
 	}
 
 	public void upgradeMicrophone ()
