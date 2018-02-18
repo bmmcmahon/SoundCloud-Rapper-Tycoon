@@ -168,8 +168,23 @@ public class GameState
 			int chance = random.Next (1, 16); // 1/15 chance to get shot
 			int chance2 = random.Next (1, 16);
 
-			return chance == chance2;
+			if (chance == chance2) 
+			{
+				// Reset all levels to 1 - you got robbed son
+				this.microphone = new Equipment ();
+				this.computer = new Equipment ();
+				this.producer = new Equipment ();
+
+				// Loose half your money - Gotta pay your Bills
+				this.money /= 2.0;
+
+				//Gain 2x Followers for gettin shot
+				this.followers *= 2;
+				return true;
+			}
+
+
 		}
-		return false;
+		return true;
 	}
 }
